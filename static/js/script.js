@@ -106,7 +106,7 @@ const displayItem = (items) => {
               <img src=${image}>
               <h3>${title}</h3>
               <p>${para}</p>
-            <a href="loginUrl">
+            <a href=loginUrl>
               <div class="course-btn">Join Now</div>
             </a>
           </div>`;

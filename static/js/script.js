@@ -22,6 +22,8 @@ function redirectToHome() {
   window.location.href = "index.html#courses";
 }
 
+const loginUrl = "{{ url_for('login') }}";
+
 const courses = [
   {
     id: 0,
@@ -104,7 +106,7 @@ const displayItem = (items) => {
               <img src=${image}>
               <h3>${title}</h3>
               <p>${para}</p>
-            <a href="Sign In - Up/signin.html">
+            <a href="loginUrl">
               <div class="course-btn">Join Now</div>
             </a>
           </div>`;

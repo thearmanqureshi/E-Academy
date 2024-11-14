@@ -19,7 +19,7 @@
 </head>
 
 <body>
-
+  
   <!-- ----- Header ----- -->
   <header>
     <!-- ----- Navbar ----- -->
@@ -36,11 +36,10 @@
 
       <div id="search-bar">
         <div id="search-icon">
-          <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div id="search-box">
-          <input type="text" id="search" name="search" placeholder="Search E Academy Courses"
-            list="search-suggestions" />
+          <input type="text" id="search" name="search" placeholder="Search E Academy Courses" list="search-suggestions"/>
         </div>
         <datalist id="search-suggestions">
           <option value="Web Development">
@@ -66,21 +65,21 @@
     </div>
   </header>
 
+  
+    <!-- ----- Hero Section ----- -->
+    <section id="hero">
+      <div id="banner">
 
-  <!-- ----- Hero Section ----- -->
-  <section id="hero">
-    <div id="banner">
+        <div id="banner-content">
+          <h1>Enhance your skills with our online courses</h1>
+          <p>
+            Dive into a world of knowledge with our comprehensive and engaging
+            online courses designed for skill enchancement
+          </p>
+        </div>
 
-      <div id="banner-content">
-        <h1>Enhance your skills with our online courses</h1>
-        <p>
-          Dive into a world of knowledge with our comprehensive and engaging
-          online courses designed for skill enchancement
-        </p>
       </div>
-
-    </div>
-  </section>
+    </section>
   </header>
 
   <!-- ----- Courses Section ----- -->
@@ -96,7 +95,7 @@
           Web development for beginners - learn web development from basics
         </p>
         </p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -105,7 +104,7 @@
         <img src="../static/Images/SQL.jpg">
         <h3>SQL</h3>
         <p>SQL for beginners - learn SQL from scratch with examples</p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -116,7 +115,7 @@
         <p>
           PowerBi for beginners, PowerBi Projects & Dashboard
         </p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -127,7 +126,7 @@
         <p>
           complete c++ DSA course | learn DSA with c++ from basics
         </p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -136,7 +135,7 @@
         <img src="../static/Images/Python.png">
         <h3>Python</h3>
         <p>Python for beginners - learn Python from basics</p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -145,7 +144,7 @@
         <img src="../static/Images/Java.png">
         <h3>Java</h3>
         <p>JAVA for beginners - learn JAVA from basics</p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -154,7 +153,7 @@
         <img src="../static/Images/MongoDB.png">
         <h3>Mongo DB</h3>
         <p>Mongo DB for beginners - learn MongoDB from scratch</p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -163,7 +162,7 @@
         <img src="../static/Images/MachineLearning.png">
         <h3>Machine Learning</h3>
         <p>ML for beginners - learn Machine Learning from scratch</p>
-        <a href="Sign In - Up/signin.html">
+        <a href="{{ url_for('dashboard') }}">
           <div class="course-btn">Join Now</div>
         </a>
       </div>
@@ -229,8 +228,8 @@
           <div class="review">
             <div class="user-profile">
 
-              <img src="Images/Arman Qureshi.png">
-
+                <img src="../static/Images/Arman Qureshi.png">
+  
               <div class="user-info">
                 <h3>Arman Qureshi</h3>
                 <h4>Web Developer</h4>
@@ -238,8 +237,7 @@
             </div>
 
             <div class="user-review-text">
-              <p>Great Web Development course with hands-on projects; just wish there were more live Q&A sessions for
-                instant feedback!</p>
+              <p>Great Web Development course with hands-on projects; just wish there were more live Q&A sessions for instant feedback!</p>
             </div>
 
             <div class="user-ratings">
@@ -257,9 +255,9 @@
 
           <div class="review">
             <div class="user-profile">
-
-              <img src="Images/Piyush Negi.png">
-
+              
+                <img src="../static/Images/Piyush Negi.png">
+  
               <div class="user-info">
                 <h3>Piyush Negi</h3>
                 <h4>Mobile Web Developer</h4>
@@ -267,8 +265,7 @@
             </div>
 
             <div class="user-review-text">
-              <p>Great DSA course with clear explanations and challenging problems; a few more advanced practice sets
-                would make it perfect!</p>
+              <p>Great DSA course with clear explanations and challenging problems; a few more advanced practice sets would make it perfect!</p>
             </div>
 
             <div class="user-ratings">
@@ -286,9 +283,9 @@
 
           <div class="review">
             <div class="user-profile">
-
-              <img src="Images/Ansh Arora.png">
-
+              
+                <img src="../static/Images/Ansh Arora.png">
+  
               <div class="user-info">
                 <h3>Ansh Arora</h3>
                 <h4>Data Scientist</h4>
@@ -296,8 +293,7 @@
             </div>
 
             <div class="user-review-text">
-              <p>Fantastic Machine Learning course with clear explanations and practical projects—would love even more
-                advanced topics included!</p>
+              <p>Fantastic Machine Learning course with clear explanations and practical projects—would love even more advanced topics included!</p>
             </div>
 
             <div class="user-ratings">
@@ -315,9 +311,9 @@
 
           <div class="review">
             <div class="user-profile">
-
-              <img src="Images/Karan Singh.png">
-
+              
+                <img src="../static/Images/Karan Singh.png">
+  
               <div class="user-info">
                 <h3>Karan Singh</h3>
                 <h4>Data Analyst</h4>
@@ -325,8 +321,7 @@
             </div>
 
             <div class="user-review-text">
-              <p>Excellent Power BI course with practical insights and real-world examples; just wish there were more
-                hands-on exercises!</p>
+              <p>Excellent Power BI course with practical insights and real-world examples; just wish there were more hands-on exercises!</p>
             </div>
 
             <div class="user-ratings">
@@ -373,8 +368,8 @@
         <input type="hidden" name="subject" value="New Contact Form Entry">
         <input type="hidden" name="from_name" value="E-Academy">
 
-        <input type="text" name="name" placeholder="Enter Your Name" required />
-        <input type="email" name="email" placeholder="Enter Your Email" required />
+        <input type="text" name="name" placeholder="Enter Your Name" required/>
+        <input type="email" name="email" placeholder="Enter Your Email" required/>
         <textarea name="message" rows="8" placeholder="How Can We Help You?" required></textarea>
 
         <!-- Honeypot Spam Protection -->

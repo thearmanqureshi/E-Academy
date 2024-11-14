@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E Academy | About The Project</title>
+
+  <!-- ----- CSS Linking ----- -->
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- ----- Favicon ----- -->
+  <link rel="icon" href="Images/Avatar.png" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- ----- Header ----- -->
+  <header>
+    <!-- ----- Navbar ----- -->
+    <div id="navbar">
+      <div id="logo-container">
+        <img src="Images/Logo.jpg" id="logo" alt="Logo" />
+      </div>
+
+      <nav id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="aboutProject.html" class="nav-active">About Project</a>
+        <a href="contributors.html">Contributors</a>
+      </nav>
+
+      <div id="search-bar">
+        <div id="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div id="search-box">
+          <input type="search" placeholder="Search E Academy Courses" onclick="redirectToHome()"/>
+        </div>
+      </div>
+
+      <nav id="signin-up">
+        <a href="Sign In - Up/signin.html">Sign In</a>
+        <a href="Sign In - Up/signup.html">Sign Up</a>
+      </nav>
+
+      <div id="menu">
+        <i id="menu-open" class="fa-solid fa-bars"></i>
+        <i id="menu-close" class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ----- About The Project ----- -->
+  <section id="about">
+
+    <h1>About E-Academy : Secure E-Learning Management System Project</h1>
+
+    <div id="about-content">
+      <h2>Overview</h2>
+      <p>E-Academy is an advanced e-learning management system that combines robust security features with intelligent
+        student performance prediction. Our platform provides a secure, encrypted environment for educational content
+        delivery while leveraging neural networks to help educators better understand and support student progress.</p>
+      <hr>
+      <h2>Key Features</h2>
+      <h3>Security & Access Control</h3>
+      <ul>
+        <li>Encrypted content delivery</li>
+        <li>Role-based access control for students and teachers</li>
+        <li>Protected study materials and course content</li>
+        <li>Secure user authentication system</li>
+      </ul>
+      <h3>Student Features</h3>
+      <ul>
+        <li>Access to encrypted course materials</li>
+        <li>Assignment submission portal</li>
+        <li>Personalized study material recommendations</li>
+        <li>Progress tracking dashboard</li>
+      </ul>
+      <h3>Teacher Features</h3>
+      <ul>
+        <li>Comprehensive administrative dashboard</li>
+        <li>Student performance prediction using neural networks</li>
+        <li>Assignment management and grading system</li>
+        <li>Real-time student progress monitoring</li>
+        <li>Advanced analytics powered by Power BI</li>
+      </ul>
+      <hr>
+      <h2>Technical Implementation</h2>
+      <ul>
+        <li><b>Frontend</b>: HTML, CSS, JavaScript</li>
+        <li><b>Backend</b>: Python (Flask)</li>
+        <li><b>Machine Learning</b>: TensorFlow for neural network implementation & Deep learning algorithms for
+          performance prediction</li>
+        <li><b>Analytics</b>: Power BI for interactive dashboards</li>
+        <li><b>Data Science</b>: Student performance analysis and prediction modeling</li>
+      </ul>
+      <hr>
+      <h2>Architecture</h2>
+      <ul>
+        <li>Flask-based backend handling user authentication and course management</li>
+        <li>Secure content delivery system with encryption</li>
+        <li>Integration of machine learning models for performance prediction</li>
+        <li>Power BI dashboards for data visualization and analytics</li>
+      </ul>
+      <hr>
+      <h2>Team Contributors</h2>
+      <p>Our talented team brings together expertise in data science, machine learning, and web development to create
+        E-Academy.</p>
+      <h3>Web Development Team</h3>
+      <h4>Arman Qureshi</h4>
+      <ul>
+        <li>Built the complete website interface</li>
+        <li>Created intuitive navigation and user experience</li>
+        <li>Designed interactive teacher & student management system</li>
+      </ul>
+      <h4>Piyush Negi</h4>
+      <ul>
+        <li>Ensured cross-device compatibility</li>
+        <li>Implemented responsive design principles</li>
+        <li>Optimized website for multiple screen sizes</li>
+        <li>Enhanced mobile user experience</li>
+      </ul>
+      <h3>Data Science Team</h3>
+      <h4>Ansh Arora</h4>
+      <ul>
+        <li>Implemented complete backend architecture using Flask</li>
+        <li>Integrated ML models with web platform</li>
+        <li>Developed student performance prediction model using neural networks</li>
+      </ul>
+      <h4>Karan Singh</h4>
+      <ul>
+        <li>Performed comprehensive data cleaning and EDA</li>
+        <li>Conducted model testing and validation</li>
+        <li>Optimized prediction model performance</li>
+        <li>Created interactive Power BI dashboards</li>
+      </ul>
+      <p class="extraMargin">Each team member's unique skills and dedication have contributed to making E-Academy a
+        robust and user-friendly
+        e-learning platform.</p>
+      <hr>
+      <h2>Project impact</h2>
+      <p>E-Academy represents a significant step forward in educational technology by combining:</p>
+      <ul class="extraMargin">
+        <li>Advanced security measures for content protection</li>
+        <li>Intelligent learning analytics</li>
+        <li>Predictive modeling for student success</li>
+        <li>User-friendly interface for both educators and students</li>
+      </ul>
+      <p>Our system aims to create a more secure, efficient, and intelligent learning environment that benefits both
+        students and educators.</p>
+    </div>
+
+  </section>
+
+
+  <!-- ----- Footer ----- -->
+  <footer>
+    <div id="footer-logo">
+      <div id="f-logo"></div>
+
+      <div id="social">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+
+      <div id="copyright">
+        <p>© 2024 E Academy, Inc.</p>
+      </div>
+    </div>
+
+    <div id="contact-us">
+      <form action="https://api.web3forms.com/submit" method="POST">
+
+        <input type="hidden" name="access_key" value="3dad14ca-9c91-4d30-a083-88706a81b42d">
+        <input type="hidden" name="subject" value="New Contact Form Entry">
+        <input type="hidden" name="from_name" value="E-Academy">
+
+        <input type="text" name="name" placeholder="Enter Your Name" required/>
+        <input type="email" name="email" placeholder="Enter Your Email" required/>
+        <textarea name="message" rows="8" placeholder="How Can We Help You?" required></textarea>
+
+        <!-- Honeypot Spam Protection -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <button type="submit"><i class="fa-brands fa-telegram"></i> Send Message</button>
+      </form>
+    </div>
+  </footer>
+
+  <!-- ----- Scroll Reveal JS ----- -->
+  <script>
+    ScrollReveal().reveal('#about', { duration: 1500 });
+  </script>
+  <!-- ----- JavaScript Linking ----- -->
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -34,7 +34,7 @@ const courses = [
 
   {
     id: 1,
-    image: "../static/images/SQL.jpg",
+    image: "../static/images/sql.jpg",
     title: "SQL",
     para: "SQL for beginners - learn SQL from scratch with examples",
   },

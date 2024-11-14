@@ -73,7 +73,6 @@ const courses = [
   },
 ];
 
-// No need to use Set here as there is no duplicate filtering required
 const categories = courses;
 
 document.getElementById("search").addEventListener("keyup", (e) => {

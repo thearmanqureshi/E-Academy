@@ -4,156 +4,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E Academy | Student</title>
+  <title>E Academy | Teacher's Dashboard</title>
 
-  <!-- ==== CSS Linking ==== -->
-  <link rel="stylesheet" href="../static/css/student.css" type="text/css" />
+  <!-- CSS Linking -->
+  <link rel="stylesheet" href="../static/css/teacher.css" type="text/css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-  <!-- ==== Favicon ==== -->
+  <!-- Favicon -->
   <link rel="icon" href="../static/Images/Avatar.png" type="image/x-icon" />
 </head>
 
 <body>
-  <div id="main">
-    <!-- ==== Navbar ==== -->
-    <aside id="left-sidebar">
-      <header>
 
+  <div id="main">
+
+    <aside id="left-sidebar">
+      
+      <header>
         <div id="header-logo">
           <img src="../static/Images/Logo.jpg">
         </div>
-
         <nav id="navbar">
-          <div class="nav-link"><a href="student.html" class="active"><i class='bx bxs-home'></i>Home</a></div>
-          <div class="nav-link"><a href="courses.html"><i class='bx bxs-book-bookmark'></i>Courses</a></div>
-          <div class="nav-link"><a href="assignment.html"><i class='bx bxs-book-content'></i>Assignment(s)</a></div>
-          <div class="nav-link"><a href="studyMaterial.html"><i class='bx bxs-bookmarks'></i>Study Material</a></div>
+          <div class="nav-link"><a href="teacher.html" class="active"><i class='bx bxs-dashboard'></i>Dashboard</a></div>
+          <div class="nav-link"><a href="assignments.html"><i class='bx bxs-book-content'></i>Assignments</a></div>
+          <div class="nav-link"><a href="performancePrediction.html"><i class='bx bxs-bar-chart-alt-2'></i>Performance Prediction</a></div>
         </nav>
-
       </header>
-
-      <div id="user-info" onclick="togglePopup()">
-        <div id="user-icon">
-          <i class='bx bxs-user-circle'></i>
-        </div>
-        <div id="user">
-          <div id="username">
-            <h5>{{ name }}</h5>
-          </div>
-          <div id="user-email">
-            <h5>{{ email }}</h5>
-          </div>
-        </div>
-      </div>
-
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <a href="{{ url_for('logout') }}" class="logout-button">Sign Out<i class='bx bx-log-out-circle'></i></a>
-        </div>
-      </div>
-
     </aside>
 
-    <!-- ==== MAIN ==== -->
     <main>
-      <!-- ----- Courses Section ----- -->
-      <section id="courses">
-
-        <h2>Our offered courses</h2>
-
-        <div id="courses-container">
-          <div class="course">
-            <img src="../static/Images/Web-Dev.jpg">
-            <h3>Web Development</h3>
-            <p>
-              Web development for beginners - learn web development from basics
-            </p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Web Development', 'A Course on Web Development by Apna College', 'No. of Lessons : 58')">Enroll
-              Now</button>
+      <section id="hero-section">
+        <div id="hero">
+          <div id="hero-content">
+            <h1>Welcome back, {{ name }}!</h1>
+            <p>Behind every successful student, there's a teacher who never gave up. Keep it up!</p>
           </div>
-
-          <div class="course">
-            <img src="../static/Images/SQL.jpg">
-            <h3>SQL</h3>
-            <p>SQL for beginners - learn SQL from scratch with examples</p>
-            <button class="course-btn"
-              onclick="showCourseDetails('SQL', 'A Course on Structured Query Language by Apna College', 'Duration : 3 Hrs')">Enroll
-              Now</button>
+          <div id="hero-img">
+            <img src="../static/Images/hero.png">
           </div>
-
-          <div class="course">
-            <img src="../static/Images/PowerBI.png">
-            <h3>PowerBi Dashboard</h3>
-            <p>
-              PowerBi for beginners, PowerBi Projects & Dashboard
-            </p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Power BI', 'A Course on Power Business Intelligence by Learnit Training', 'No. of Lessons : 7')">Enroll
-              Now</button>
-          </div>
-
-          <div class="course">
-            <img src="../static/Images/DSA.png">
-            <h3>C++ DSA</h3>
-            <p>
-              complete c++ DSA course | learn DSA with c++ from basics
-            </p>
-            <button class="course-btn"
-              onclick="showCourseDetails('DSA', 'A Course on Data Structure & Algorithms by Apna College', 'No. of Lessons : 37')">Enroll
-              Now</button>
-          </div>
-
-          <div class="course">
-            <img src="../static/Images/Python.png">
-            <h3>Python</h3>
-            <p>Python for beginners - learn Python from basics</p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Python', 'A Course on Python Programming Language by Apna College', 'No. of Lessons : 9')">Enroll
-              Now</button>
-          </div>
-
-          <div class="course">
-            <img src="../static/Images/Java.png">
-            <h3>Java</h3>
-            <p>JAVA for beginners - learn JAVA from basics</p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Java', 'A Course on Java Programming Language by Apna College', 'No. of Lessons : 39')">Enroll
-              Now</button>
-          </div>
-
-          <div class="course">
-            <img src="../static/Images/MongoDB.png">
-            <h3>Mongo DB</h3>
-            <p>Mongo DB for beginners - learn MongoDB from scratch</p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Mongo DB', 'A Course on Mongo DataBase by Bro Code', 'Duration : 1 Hr')">Enroll
-              Now</button>
-          </div>
-
-          <div class="course">
-            <img src="../static/Images/MachineLearning.png">
-            <h3>Machine Learning</h3>
-            <p>ML for beginners - learn Machine Learning from scratch</p>
-            <button class="course-btn"
-              onclick="showCourseDetails('Machine Learning', 'A Course on Machine Learning by Gate Smashers', 'No. of Lessons : 38')">Enroll
-              Now</button>
-          </div>
-
         </div>
+      </section>
 
-        <div id="courseDialog" class="dialog-overlay">
-          <div class="dialog-box">
-            <button class="close-button" onclick="closeDialog()">Close</button>
-            <div class="dialog-image">
-              <h2 id="courseTitle"></h2>
+    
+      <section id="dashboard-section">
+
+        <div id="dashboard">
+          <div id="cards">
+
+            <div class="card">
+              <img src="../static/Images/Card-1.jpg">
             </div>
-            <p id="courseDescription"></p>
-            <p id="courseDuration"></p>
-            <!-- Enroll Button inside Dialog -->
-            <button id="enrollButton" class="dialog-btn">Enroll</button>
+
+            <div class="card">
+              <img src="../static/Images/Card-2.jpg">
+            </div>
+
+            <div class="card">
+              <img src="../static/Images/Card-3.jpg">
+            </div>
+
+            <div class="card">
+              <img src="../static/Images/Card-4.jpg">
+            </div>
+
+            <div class="card">
+              <img src="../static/Images/Card-5.jpg">
+            </div>
+
+            <div class="card">
+              <img src="../static/Images/Card-6.jpg">
+            </div>
+
           </div>
         </div>
 
@@ -161,27 +82,47 @@
 
     </main>
 
+    <aside id="right-sidebar">
+
+      <div id="user-info">
+        <div id="user">
+          <div id="username">
+            <h5>{{ username }}</h5>
+          </div>
+          <div id="user-email">
+            <h5>{{ email }}</h5>
+          </div>
+        </div>
+        <div id="user-icon">
+          <i class='bx bxs-user-circle'></i>
+        </div>
+      </div>
+
+      <div class="calendar">
+        <div class="calendar=hdr">
+          <nav class="calendar-nav">
+            <button id="prev"></button>
+            <h3></h3>
+            <button id="next"></button>
+          </nav>
+        </div>
+        <div class="calendar-main">
+          <ul class="days">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+          </ul>
+          <ul class="dates"></ul>
+        </div>
+    </aside>
+
   </div>
 
-  <!-- ==== JavaScript Linking -->
-  <script src="student.js"></script>
-  <script>
-    function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "block" ? "none" : "block";
-    }
-
-    // Close the popup when clicking outside
-    document.addEventListener("click", function (event) {
-      const popup = document.getElementById("popup");
-      const userInfo = document.getElementById("user-info");
-
-      if (!popup.contains(event.target) && !userInfo.contains(event.target)) {
-        popup.style.display = "none";
-      }
-    });
-
-  </script>
+  <script src="../static/js/teacher.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,0 @@
-flask
-werkzeug
-flask-login
-flask-pymongo
-flask-bcrypt
-pymongo
-gunicorn
-python-dotenv

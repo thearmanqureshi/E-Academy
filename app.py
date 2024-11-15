@@ -109,6 +109,49 @@ def signin():
     
     return render_template('signin.html')
 
+# Forgot Password Route
+@app.route('/forgotPassword', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+        user = mongo.db.users.find_one({'email': email})
+        if user:
+            # If the email is found, redirect to reset password page
+            return redirect(url_for('reset_password', email=email))
+        else:
+            flash('Email not registered. Please check your email or sign up.', 'danger')
+    
+    return render_template('forgotPassword.html')
+
+# Reset Password Route
+@app.route('/resetPassword/<email>', methods=['GET', 'POST'])
+def reset_password(email):
+    user = mongo.db.users.find_one({'email': email})
+    
+    if not user:
+        flash('No user found with that email address.', 'danger')
+        return redirect(url_for('forgotPassword'))
+
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if new_password != confirm_password:
+            flash('Passwords do not match. Please try again.', 'danger')
+            return redirect(url_for('resetPassword', email=email))
+
+        # Hash the new password
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+
+        # Update the password in the database
+        mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        
+        flash('Your password has been updated successfully!', 'success')
+        return redirect(url_for('signin'))
+
+    return render_template('resetPassword.html', email=email)
+
 # Teacher Route
 @app.route('/teacher')
 @login_required

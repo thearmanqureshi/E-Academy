@@ -588,7 +588,7 @@ footer {
 }
 
 #f-logo {
-  background-image: url(Images/Logo.jpg);
+  background-image: url(../Images/Logo.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;

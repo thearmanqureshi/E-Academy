@@ -3,18 +3,18 @@ from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from bson.objectid import ObjectId
-from bson.errors import InvalidId
 from config import ProductionConfig, DevelopmentConfig
 import os
 
 # Initialize Flask app and config
 app = Flask(__name__)
 # Use ProductionConfig when FLASK_ENV is production
-app.config.from_object(
-    ProductionConfig if os.environ.get('FLASK_ENV') == 'production' else DevelopmentConfig
-)
+if os.environ.get('FLASK_ENV') == 'production':
+    app.config.from_object(ProductionConfig)
+else:
+    app.config.from_object(DevelopmentConfig)
 
-# Setting up MongoDB, bcrypt, and login manager
+# Set up MongoDB, bcrypt, and login manager
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
@@ -33,11 +33,8 @@ class User(UserMixin):
 # Load user
 @login_manager.user_loader
 def load_user(user_id):
-    try:
-        user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        return User(user_data) if user_data else None
-    except InvalidId:
-        return None
+    user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    return User(user_data) if user_data else None
 
 # Home Page Route
 @app.route('/')
@@ -52,49 +49,39 @@ def signup():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
-
-        # Validate input fields
-        if not username or not email or not password or not name:
-            flash('All fields are required', 'danger')
-            return redirect(url_for('signup'))
-
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-
+        
         # Check if username or email already exists
         if mongo.db.users.find_one({'username': username}) or mongo.db.users.find_one({'email': email}):
             flash('Username or email already registered. Please choose different ones.', 'danger')
             return redirect(url_for('signup'))
-
-        # Insert user data with default is_teacher set to False
+        
+        # Insert user data with username and email
         mongo.db.users.insert_one({
             'name': name,
             'username': username,
             'email': email,
             'password': hashed_password,
-            'is_teacher': False  # Default to False
+            'is_teacher': False
         })
-        flash('Account created! You can now log in.', 'success')
+        flash('Account created! You can now sign in.', 'success')
         return redirect(url_for('signin'))
     return render_template('signup.html')
 
-# Login Route
+# Sign In Route
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-
-        if not username or not password:
-            flash('Both username and password are required', 'danger')
-            return redirect(url_for('signin'))
-
+        
         user_data = mongo.db.users.find_one({'username': username})
         if user_data and bcrypt.check_password_hash(user_data['password'], password):
             user = User(user_data)
             login_user(user)
             return redirect(url_for('teacher' if user.is_teacher else 'student'))
         else:
-            flash('Login unsuccessful. Please check username and password.', 'danger')
+            flash('Sign-in unsuccessful. Please check username and password.', 'danger')
     return render_template('signin.html')
 
 # Teacher Route
@@ -108,7 +95,7 @@ def teacher():
 # Student Route
 @app.route('/student')
 @login_required
-def user_dashboard():
+def student():
     return render_template('student.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 # Logout Route
@@ -127,8 +114,4 @@ def forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_error(e):
-    return render_template('500.html'), 500
 

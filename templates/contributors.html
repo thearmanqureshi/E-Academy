@@ -14,7 +14,7 @@
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="Images/Avatar.png" type="image/x-icon" />
+  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
     <div id="navbar">
       <div id="logo-container">
-        <img src="Images/Logo.jpg" id="logo" alt="Logo" />
+        <img src="../static/Images/Logo.jpg" id="logo" alt="Logo" />
       </div>
 
       <nav id="nav-links">
@@ -42,8 +42,8 @@
       </div>
 
       <nav id="signin-up">
-        <a href="Sign In - Up/signin.html">Sign In</a>
-        <a href="Sign In - Up/signup.html">Sign Up</a>
+        <a href="{{ url_for('signin') }}">Sign In</a>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
       </nav>
 
       <div id="menu">
@@ -62,10 +62,10 @@
 
       <div class="contributors-profile">
 
-        <img src="Images/Web Dev Badge.png" class="profile-badge">
+        <img src="../static/Images/Web-Dev-Badge.png" class="profile-badge">
 
         <div class="profile">
-          <img src="Images/Arman Qureshi.png" class="profile-photo">
+          <img src="Images/Arman-Qureshi.png" class="profile-photo">
           <div class="profile-content">
             <h3>Arman Qureshi</h3>
             <ul>
@@ -84,10 +84,10 @@
 
       <div class="contributors-profile">
         
-        <img src="Images/Web Dev Badge.png" class="profile-badge">
+        <img src="../static/Images/Web-Dev-Badge.png" class="profile-badge">
 
         <div class="profile">
-          <img src="Images/Piyush Negi.png" class="profile-photo">
+          <img src="Images/Piyush-Negi.png" class="profile-photo">
           <div class="profile-content">
             <h3>Piyush Negi</h3>
             <ul>
@@ -107,10 +107,10 @@
 
       <div class="contributors-profile">
 
-        <img src="Images/Data Scientist Badge.png" class="profile-badge">
+        <img src="../static/Images/Data-Scientist-Badge.png" class="profile-badge">
 
         <div class="profile">
-          <img src="Images/Ansh Arora.png" class="profile-photo">
+          <img src="Images/Ansh-Arora.png" class="profile-photo">
           <div class="profile-content">
             <h3>Ansh Arora</h3>
             <ul>
@@ -129,10 +129,10 @@
 
       <div class="contributors-profile">
 
-        <img src="Images/Data Analyst Badge.png" class="profile-badge">
+        <img src="../static/Images/Data-Analyst-Badge.png" class="profile-badge">
 
         <div class="profile">
-          <img src="Images/Karan Singh.png" class="profile-photo">
+          <img src="Images/Karan-Singh.png" class="profile-photo">
           <div class="profile-content">
             <h3>Karan Singh</h3>
             <ul>
@@ -196,7 +196,7 @@
     ScrollReveal().reveal('.contributors-profile', { interval: 200 });
   </script>
   <!-- ----- JavaScript Linking ----- -->
-  <script src="script.js"></script>
+  <script src="../static/js/script.js"></script>
 </body>
 
 </html>

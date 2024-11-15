@@ -27,7 +27,7 @@ const loginUrl = "{{ url_for('login') }}";
 const courses = [
   {
     id: 0,
-    image: "../static/Images/Web-Dev.jpg",
+    image: "../static/images/Web-Dev.jpg",
     title: "Web Development",
     para: "Web development for beginners - learn web development from basics",
   },

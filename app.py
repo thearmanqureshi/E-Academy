@@ -127,30 +127,28 @@ def forgot_password():
 # Reset Password Route
 @app.route('/resetPassword/<email>', methods=['GET', 'POST'])
 def reset_password(email):
-    user = mongo.db.users.find_one({'email': email})
-    
-    if not user:
-        flash('No user found with that email address.', 'danger')
-        return redirect(url_for('forgotPassword'))
+   user = mongo.db.users.find_one({'email': email})
+   if not user:
+       flash('No user found with that email address.', 'danger')
+       return redirect(url_for('forgotPassword'))
 
-    if request.method == 'POST':
-        new_password = request.form.get('new_password')
-        confirm_password = request.form.get('confirm_password')
-        
-        if new_password != confirm_password:
-            flash('Passwords do not match. Please try again.', 'danger')
-            return redirect(url_for('resetPassword', email=email))
+   if request.method == 'POST':
+       new_password = request.form.get('new_password')
+       confirm_password = request.form.get('confirm_password')
 
-        # Hash the new password
-        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+       if new_password != confirm_password:
+           flash('Passwords do not match. Please try again.', 'danger')
+           return redirect(url_for('resetPassword', email=email))
 
-        # Update the password in the database
-        mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
-        
-        flash('Your password has been updated successfully!', 'success')
-        return redirect(url_for('signin'))
+       # Hash the new password
+       hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
 
-    return render_template('resetPassword.html', email=email)
+       # Update the password in the database
+       mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+       flash('Your password has been updated successfully!', 'success')
+       return redirect(url_for('signin'))
+
+   return render_template('resetPassword.html', email=email)
 
 # Teacher Route
 @app.route('/teacher')

@@ -89,7 +89,11 @@ def signin():
         if user_data and bcrypt.check_password_hash(user_data['password'], password):
             user = User(user_data)
             login_user(user)
-            return redirect(url_for('teacher' if user.is_teacher else 'student'))
+            # Explicit redirection based on user type
+            if user.is_teacher:
+                return redirect(url_for('teacher'))
+            else:
+                return redirect(url_for('student'))
         else:
             flash('Sign-in unsuccessful. Please check username and password.', 'danger')
     return render_template('signin.html')
@@ -124,4 +128,3 @@ def forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-

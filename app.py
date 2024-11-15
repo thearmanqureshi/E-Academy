@@ -86,16 +86,27 @@ def signin():
         password = request.form.get('password')
         
         user_data = mongo.db.users.find_one({'username': username})
-        if user_data and bcrypt.check_password_hash(user_data['password'], password):
-            user = User(user_data)
-            login_user(user)
-            # Explicit redirection based on user type
-            if user.is_teacher:
-                return redirect(url_for('teacher'))
-            else:
-                return redirect(url_for('student'))
+        
+        if not user_data:
+            # If the username is not found, flash an info message and redirect to sign-up
+            flash('Username not registered. Please sign up first.', 'info')
+            return redirect(url_for('signup'))
+        
+        # If username exists but password is incorrect, flash a danger message
+        if not bcrypt.check_password_hash(user_data['password'], password):
+            flash('Incorrect password. Please try again.', 'danger')
+            return redirect(url_for('signin'))
+        
+        # If both username and password are correct, log the user in
+        user = User(user_data)
+        login_user(user)
+        
+        # Explicit redirection based on user type
+        if user.is_teacher:
+            return redirect(url_for('teacher'))
         else:
-            flash('Sign-in unsuccessful. Please check username and password.', 'danger')
+            return redirect(url_for('student'))
+    
     return render_template('signin.html')
 
 # Teacher Route

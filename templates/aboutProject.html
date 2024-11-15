@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="Images/Avatar.png" type="image/x-icon" />
+  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
     <!-- ----- Navbar ----- -->
     <div id="navbar">
       <div id="logo-container">
-        <img src="Images/Logo.jpg" id="logo" alt="Logo" />
+        <img src="../static/Images/Logo.jpg" id="logo" alt="Logo" />
       </div>
 
       <nav id="nav-links">
@@ -40,8 +40,8 @@
       </div>
 
       <nav id="signin-up">
-        <a href="Sign In - Up/signin.html">Sign In</a>
-        <a href="Sign In - Up/signup.html">Sign Up</a>
+        <a href="{{ url_for('signin') }}">Sign In</a>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
       </nav>
 
       <div id="menu">
@@ -194,7 +194,7 @@
     ScrollReveal().reveal('#about', { duration: 1500 });
   </script>
   <!-- ----- JavaScript Linking ----- -->
-  <script src="script.js"></script>
+  <script src="../static/js/script.js"></script>
 </body>
 
 </html>

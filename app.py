@@ -128,6 +128,7 @@ def forgot_password():
 @app.route('/resetPassword/<email>', methods=['GET', 'POST'])
 def reset_password(email):
     user = mongo.db.users.find_one({'email': email})
+    
     if not user:
         flash('No user found with that email address.', 'danger')
         return redirect(url_for('forgotPassword'))
@@ -135,22 +136,19 @@ def reset_password(email):
     if request.method == 'POST':
         new_password = request.form.get('new_password')
         confirm_password = request.form.get('confirm_password')
-
+        
         if new_password != confirm_password:
             flash('Passwords do not match. Please try again.', 'danger')
-            return render_template('resetPassword.html', email=email)
+            return redirect(url_for('resetPassword', email=email))
 
         # Hash the new password
         hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
 
         # Update the password in the database
-        result = mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
-        if result.matched_count == 1 and result.modified_count == 1:
-            flash('Your password has been updated successfully!', 'success')
-            return redirect(url_for('signin'))
-        else:
-            flash('Failed to update password. Please try again.', 'danger')
-            return render_template('resetPassword.html', email=email)
+        mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        
+        flash('Your password has been updated successfully!', 'success')
+        return redirect(url_for('signin'))
 
     return render_template('resetPassword.html', email=email)
 

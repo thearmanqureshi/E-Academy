@@ -161,11 +161,36 @@ def teacher():
         abort(403)
     return render_template('teacher.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
+@app.route('/teacher/assignment_result')
+@login_required
+def assignment_result():
+    return render_template('assignments.html')
+
+@app.route('/teacher/performance_prediction')
+@login_required
+def performance_prediction():
+    return render_template('performancePrediction.html')
+
 # Student Route
 @app.route('/student')
 @login_required
 def student():
     return render_template('student.html', username=current_user.username, email=current_user.email, name=current_user.name)
+
+@app.route('/student/courses')
+@login_required
+def courses():
+    return render_template('courses.html')
+
+@app.route('/student/assignments')
+@login_required
+def assignments():
+    return render_template('assignment.html')
+
+@app.route('/student/study_material')
+@login_required
+def study_material():
+    return render_template('studyMaterial.html')
 
 # Logout Route
 @app.route('/logout')

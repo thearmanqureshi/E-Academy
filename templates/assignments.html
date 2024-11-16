@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E Academy | Assignment Responses</title>
+
+    <!-- CSS Linking -->
+    <link rel="stylesheet" href="teacher.css" type="text/css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../Images/Avatar.png" type="image/x-icon" />
+</head>
+
+<body>
+
+    <div id="main">
+
+        <aside id="left-sidebar">
+            <header>
+                <div id="header-logo">
+                    <img src="../Images/Logo.jpg">
+                </div>
+                <nav id="navbar">
+                    <div class="nav-link"><a href="teacher.html"><i class='bx bxs-dashboard'></i>Dashboard</a></div>
+                    <div class="nav-link"><a href="assignments.html" class="active"><i class='bx bxs-book-content'></i>Assignment</a></div>
+                    <div class="nav-link"><a href="performancePrediction.html"><i class='bx bxs-bar-chart-alt-2'></i>Performance Prediction</a></div>
+                </nav>
+            </header>
+        </aside>
+
+        <main>
+            <section id="form-responses">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQ0NXvqiTpDShcLIJvNjUl8Y5E1OPrSWOnMHEGFenBAJOLp02LPD2ODp-AQkbpCPS73Mh_ernNfpvC/pubhtml?widget=true&amp;headers=false"></iframe>
+            </section>
+        </main>
+
+        <aside id="right-sidebar">
+
+            <div id="user-info">
+                <div id="user">
+                    <div id="username">
+                        <h5>Arman Qureshi</h5>
+                    </div>
+                    <div id="user-email">
+                        <h5>thearmanqureshi@gmail.com</h5>
+                    </div>
+                </div>
+                <div id="user-icon">
+                    <i class='bx bxs-user-circle'></i>
+                </div>
+            </div>
+
+            <div class="calendar">
+                <div class="calendar=hdr">
+                    <nav class="calendar-nav">
+                        <button id="prev"></button>
+                        <h3></h3>
+                        <button id="next"></button>
+                    </nav>
+                </div>
+                <div class="calendar-main">
+                    <ul class="days">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="dates"></ul>
+                </div>
+        </aside>
+
+    </div>
+
+    <script src="teacher.js"></script>
+</body>
+
+</html>

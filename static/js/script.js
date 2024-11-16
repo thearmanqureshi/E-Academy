@@ -104,7 +104,7 @@ const displayItem = (items) => {
               <img src=${image}>
               <h3>${title}</h3>
               <p>${para}</p>
-            <a href="{{ url_for('login') }}">
+            <a href="/login">
               <div class="course-btn">Join Now</div>
             </a>
           </div>`;

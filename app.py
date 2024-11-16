@@ -182,6 +182,15 @@ def student():
 def courses():
     return render_template('courses.html')
 
+@app.route('/student/courses/webdev')
+@login_required
+def webdev():
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('webDev.html', show_content=show_content, hide_content=hide_content)
+
 @app.route('/student/assignments')
 @login_required
 def assignments():

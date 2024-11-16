@@ -111,14 +111,14 @@ def signin():
 
 # Forgot Password Route
 @app.route('/forgotPassword', methods=['GET', 'POST'])
-def forgot_password():
+def forgotPassword():
     if request.method == 'POST':
         email = request.form.get('email')
         
         user = mongo.db.users.find_one({'email': email})
         if user:
             # If the email is found, redirect to reset password page
-            return redirect(url_for('reset_password', email=email))
+            return redirect(url_for('resetPassword', email=email))
         else:
             flash('Email not registered. Please check your email or sign up.', 'danger')
     
@@ -126,7 +126,7 @@ def forgot_password():
 
 # Reset Password Route
 @app.route('/resetPassword/<email>', methods=['GET', 'POST'])
-def reset_password(email):
+def resetPassword(email):
     user = mongo.db.users.find_one({'email': email})
     
     if not user:

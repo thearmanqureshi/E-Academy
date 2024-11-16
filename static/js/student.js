@@ -163,7 +163,7 @@ function displayEnrolledCourses() {
 function startCourse(courseName) {
   // Map course names to their respective page URLs
   const coursePages = {
-    "Web Development": "Courses/webDev.html",
+    "Web Development": "student/courses/webDev",
     "SQL": "Courses/SQL.html",
     "Power BI": "Courses/powerBI.html",
     "DSA": "Courses/DSA.html",

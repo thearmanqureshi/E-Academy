@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="../static/Images/Avatar.png" type="image/x-icon" />
+  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
 </head>
 
 <body>
@@ -164,14 +164,13 @@
   </div>
 
   <!-- ==== JavaScript Linking -->
-  <script src="student.js"></script>
+  <script src="../static/js/student.js"></script>
   <script>
     function togglePopup() {
       const popup = document.getElementById("popup");
       popup.style.display = popup.style.display === "block" ? "none" : "block";
     }
 
-    // Close the popup when clicking outside
     document.addEventListener("click", function (event) {
       const popup = document.getElementById("popup");
       const userInfo = document.getElementById("user-info");
@@ -180,7 +179,6 @@
         popup.style.display = "none";
       }
     });
-
   </script>
 </body>
 

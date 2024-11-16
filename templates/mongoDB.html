@@ -7,11 +7,11 @@
   <title>E Academy | Mongo DB Course</title>
 
   <!-- ==== CSS Linking ==== -->
-  <link rel="stylesheet" href="../static/css/course.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='course.css') }}" type="text/css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="../../Images/Avatar.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Avatar.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
       <header>
 
         <div id="header-logo">
-          <img src="../../Images/Logo.jpg">
+          <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
         </div>
 
         <nav id="navbar">
@@ -87,7 +87,7 @@
   </div>
 
   <!-- ==== JavaScript Linking -->
-  <script src="courses.js"></script>
+  <script src="{{ url_for('static', filename='js/courses.js') }}"></script>
 </body>
 
 </html>

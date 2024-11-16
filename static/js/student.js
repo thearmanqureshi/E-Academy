@@ -58,7 +58,7 @@ function displayEnrolledCourses() {
   // Course data mapping
   const courseData = {
     "Web Development": {
-      image: "../static/Images/Web-Dev.jpg",
+      image: "../Images/Web-Dev.jpg",
       description:
         "Web Development Course by Apna College",
       details: {
@@ -69,7 +69,7 @@ function displayEnrolledCourses() {
       },
     },
     SQL: {
-      image: "../static/Images/SQL.jpg",
+      image: "../Images/SQL.jpg",
       description: "SQL for beginners - learn SQL from scratch with examples",
       details: {
         title: "SQL",
@@ -78,7 +78,7 @@ function displayEnrolledCourses() {
       },
     },
     "Power BI": {
-      image: "../static/Images/PowerBI.png",
+      image: "../Images/PowerBI.png",
       description: "PowerBi for beginners, PowerBi Projects & Dashboard",
       details: {
         title: "Power BI",
@@ -87,7 +87,7 @@ function displayEnrolledCourses() {
       },
     },
     DSA: {
-      image: "../static/Images/DSA.png",
+      image: "../Images/DSA.png",
       description: "complete c++ DSA course | learn DSA with c++ from basics",
       details: {
         title: "C++ DSA",
@@ -97,7 +97,7 @@ function displayEnrolledCourses() {
       },
     },
     Python: {
-      image: "../static/Images/Python.png",
+      image: "../Images/Python.png",
       description: "Python for beginners - learn Python from basics",
       details: {
         title: "Python",
@@ -106,7 +106,7 @@ function displayEnrolledCourses() {
       },
     },
     Java: {
-      image: "../static/Images/Java.png",
+      image: "../Images/Java.png",
       description: "JAVA for beginners - learn JAVA from basics",
       details: {
         title: "Java",
@@ -115,7 +115,7 @@ function displayEnrolledCourses() {
       },
     },
     "Mongo DB": {
-      image: "../static/Images/MongoDB.png",
+      image: "../Images/MongoDB.png",
       description: "Mongo DB for beginners - learn MongoDB from scratch",
       details: {
         title: "Mongo DB",
@@ -124,7 +124,7 @@ function displayEnrolledCourses() {
       },
     },
     "Machine Learning": {
-      image: ".../static/Images/MachineLearning.png",
+      image: "../Images/MachineLearning.png",
       description: "ML for beginners - learn Machine Learning from scratch",
       details: {
         title: "Machine Learning",

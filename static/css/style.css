@@ -446,6 +446,7 @@ section h1  {
   border: 1px solid #000000;
   border-radius: 20px;
   padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #about-content hr {

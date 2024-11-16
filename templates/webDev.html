@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E Academy | Web Development Course</title>
+
+  <!-- ==== CSS Linking ==== -->
+  <link rel="stylesheet" href="../static/css/courses.css" type="text/css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- ==== Favicon ==== -->
+  <link rel="icon" href="../static/Images/Favicon.png'" type="image/x-icon" />
+</head>
+
+<body>
+  <div id="main">
+    <!-- ==== Navbar ==== -->
+    <aside id="left-sidebar">
+      <header>
+        <div id="header-logo">
+          <img src="../static/Images/Logo.jpg">
+        </div>
+
+        <nav id="navbar">
+          <div class="nav-link"><a href="{{ url_for('student') }}"><i class='bx bxs-home'></i>Home</a></div>
+          <div class="nav-link"><a href="{{ url_for('courses') }}" class="active"><i class='bx bxs-book-bookmark'></i>Courses</a></div>
+          <div class="nav-link"><a href="{{ url_for('assignments') }}"><i class='bx bxs-book-content'></i>Assignment(s)</a></div>
+          <div class="nav-link"><a href="{{ url_for('study_material') }}"><i class='bx bxs-bookmarks'></i>Study Material</a></div>
+        </nav>
+      </header>
+
+      <div id="user-info">
+        <div id="user-icon">
+          <i class='bx bxs-user-circle'></i>
+        </div>
+        <div id="user">
+          <div id="username">
+            <h5>Arman Qureshi</h5>
+          </div>
+          <div id="user-email">
+            <h5>thearmanqureshi@gmail.com</h5>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==== MAIN ==== -->
+    <main>
+      <section id="video-player">
+        <div id="player-screen">
+          <iframe width="560" height="315"
+            src="https://www.youtube-nocookie.com/embed/videoseries?si=qf8iMPxer_qT3ZQX&amp;list=PLfqMhTWNBTe3H6c9OGXb5_6wcc1Mca52n"
+            title="Web Development - Apna College" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <!-- Assignment Section -->
+      {% if show_content == 'assignment' %}
+      <section id="assignment">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSetklO8ogWF5U-qQldVeESOTbCeEceypTh0ApexmRZ_JfFdEg/viewform?embedded=true"
+          width="100%" height="3387" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </section>
+      {% endif %}
+
+      <!-- Study Material Section -->
+      {% if show_content == 'studyMaterial' %}
+      <section id="studyMaterial">
+        <iframe class="scribd_iframe_embed" title="Web Dev Handwritten Notes"
+          src="https://www.scribd.com/embeds/658986890/content?start_page=1&view_mode=scroll&access_key=key-5mY39BRjt4OscdcA1p9o"
+          tabindex="0" data-auto-height="true" data-aspect-ratio="0.7068965517241379" scrolling="no" width="100%"
+          height="600" frameborder="0"></iframe>
+        <p>
+          <a title="View Web Dev Handwritten Notes on Scribd"
+            href="https://www.scribd.com/document/658986890/Web-Dev-Handwritten-Notes#from_embed"
+            style="text-decoration: underline;">Web Dev Handwritten Notes</a> by <a
+            title="View Sahu Sahu Subham's profile on Scribd"
+            href="https://www.scribd.com/user/436654385/Sahu-Sahu-Subham#from_embed"
+            style="text-decoration: underline;">Sahu Sahu Subham</a></p>
+      </section>
+      {% endif %}
+    </main>
+
+  </div>
+
+  <!-- ==== JavaScript Linking -->
+  <script src="../static/js/courses.js"></script>
+</body>
+
+</html>

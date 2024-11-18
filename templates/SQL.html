@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E Academy | SQL Course</title>
+
+  <!-- ==== CSS Linking ==== -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}" type="text/css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- ==== Favicon ==== -->
+  <link rel="icon" href="../../Images/Avatar.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div id="main">
+    <!-- ==== Navbar ==== -->
+    <aside id="left-sidebar">
+      <header>
+
+        <div id="header-logo">
+          <img src="../../Images/Logo.jpg">
+        </div>
+
+        <nav id="navbar">
+          <div class="nav-link"><a href="../student.html"><i class='bx bxs-home'></i>Home</a></div>
+          <div class="nav-link"><a href="../courses.html" class="active"><i class='bx bxs-book-bookmark'></i>Courses</a>
+          </div>
+          <div class="nav-link"><a href="../assignment.html"><i class='bx bxs-book-content'></i>Assignment(s)</a></div>
+          <div class="nav-link"><a href="../studyMaterial.html"><i class='bx bxs-bookmarks'></i>Study Material</a></div>
+        </nav>
+
+      </header>
+
+      <div id="user-info" onclick="togglePopup()">
+        <div id="user-icon">
+          <i class='bx bxs-user-circle'></i>
+        </div>
+        <div id="user">
+          <div id="username">
+            <h5>{{ name }}</h5>
+          </div>
+          <div id="user-email">
+            <h5>{{ email }}</h5>
+          </div>
+        </div>
+      </div>
+
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <a href="{{ url_for('logout') }}" class="logout-button">Sign Out<i class='bx bx-log-out-circle'></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==== MAIN ==== -->
+    <main>
+      <section id="video-player">
+        <div id="player-screen">
+          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hlGoQC332VM?si=MwbrBaPGopjP0xQ-"
+            title="SQL - Apna College" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section id="assignment" class="hidden">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfWkjnUrIfaIHjcEkrDZ5Ce3n7eN9cY8eCO9YuWcjqkdgrO2g/viewform?embedded=true"
+          width="100%" height="3431" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </section>
+
+      <section id="studyMaterial" class="hidden">
+        <iframe class="scribd_iframe_embed" title="SQL Written Notes"
+          src="https://www.scribd.com/embeds/669759156/content?start_page=1&view_mode=scroll&access_key=key-scA5uTGhTPhCG9GYTbPU"
+          tabindex="0" data-auto-height="true" data-aspect-ratio="0.7068965517241379" scrolling="no" width="100%"
+          height="600" frameborder="0"></iframe>
+        <p>
+          <a title="View SQL Written Notes on Scribd"
+            href="https://www.scribd.com/document/669759156/SQL-Written-Notes#from_embed"
+            style="text-decoration: underline;">SQL Written Notes</a> by <a
+            title="View Rahul urs N R's profile on Scribd"
+            href="https://www.scribd.com/user/575095366/Rahul-urs-N-R#from_embed"
+            style="text-decoration: underline;">Rahul urs N R</a></p>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- ==== JavaScript Linking -->
+  <script src="courses.js"></script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="{{ url_for('static', filename='Images/Avatar.png') }}" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -33,17 +33,23 @@
 
       </header>
 
-      <div id="user-info">
+      <div id="user-info" onclick="togglePopup()">
         <div id="user-icon">
           <i class='bx bxs-user-circle'></i>
         </div>
         <div id="user">
           <div id="username">
-            <h5>Arman Qureshi</h5>
+            <h5>{{ name }}</h5>
           </div>
           <div id="user-email">
-            <h5>thearmanqureshi@gmail.com</h5>
+            <h5>{{ email }}</h5>
           </div>
+        </div>
+      </div>
+
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <a href="{{ url_for('logout') }}" class="logout-button">Sign Out<i class='bx bx-log-out-circle'></i></a>
         </div>
       </div>
     </aside>
@@ -59,6 +65,7 @@
         </div>
       </section>
 
+      <!-- Assignment Section -->
       {% if show_content == 'assignment' %}
       <section id="assignment" class="hidden">
         <iframe
@@ -67,6 +74,7 @@
       </section>
       {% endif %}
 
+      <!-- Study Material Section -->
       {% if show_content == 'studyMaterial' %}
       <section id="studyMaterial" class="hidden">
         <iframe class="scribd_iframe_embed" title="MongoDB-Handwritten-Notes"

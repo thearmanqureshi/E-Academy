@@ -8,7 +8,8 @@ document.addEventListener("click", function (event) {
   const popup = document.getElementById("popup");
   const userInfo = document.getElementById("user-info");
 
-  if (!popup.contains(event.target) && !userInfo.contains(event.target)) {
+  // Close the popup if the click is outside the popup and the user info element
+  if (popup && userInfo && !popup.contains(event.target) && !userInfo.contains(event.target)) {
     popup.style.display = "none";
   }
 });
@@ -24,10 +25,10 @@ function checkURLParameter() {
     const contentElement = document.getElementById(contentId);
 
     if (videoPlayer) {
-      videoPlayer.classList.add("hidden");
+      videoPlayer.classList.add("hidden"); // Hide video player
     }
     if (contentElement) {
-      contentElement.classList.remove("hidden");
+      contentElement.classList.remove("hidden"); // Show the specific content
     }
   };
 
@@ -58,14 +59,14 @@ function updateNavbarActiveLink(activeSection) {
   // Add the active class to the relevant link based on the section
   if (activeSection === "assignment") {
     const assignmentLink = document.querySelector(
-      "#navbar a[href='{{ url_for('assignments') }}']"
+      "#navbar a[href*='?showcontent=assignment']"
     );
     if (assignmentLink) {
       assignmentLink.classList.add("active");
     }
   } else if (activeSection === "studyMaterial") {
     const studyMaterialLink = document.querySelector(
-      "#navbar a[href='{{ url_for('study_material') }}']"
+      "#navbar a[href*='?showcontent=studyMaterial']"
     );
     if (studyMaterialLink) {
       studyMaterialLink.classList.add("active");

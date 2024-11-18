@@ -10,11 +10,11 @@ const totalTime = 50; // Total countdown time in seconds
 let timeLeft = totalTime;
 let countdownInterval;
 
-// Check if the backend server is live
-async function checkBackendStatus() {
+// Check server availability (frontend + backend combined)
+async function checkServerStatus() {
     try {
-        const response = await fetch('https://eacademy-project.onrender.com', {
-            method: 'HEAD', // Use HEAD to reduce response size
+        const response = await fetch(window.location.href, {
+            method: 'HEAD', // Use HEAD to minimize response size
         });
         if (response.ok) {
             console.log("Server is live!");
@@ -25,10 +25,10 @@ async function checkBackendStatus() {
         }
         throw new Error('Server not ready');
     } catch (error) {
-        console.log('Backend not ready yet, retrying...', error);
+        console.log('Server not ready yet, retrying...', error);
         if (isSpinningUp) {
             spinupOverlay.classList.add('show');
-            setTimeout(checkBackendStatus, 2000); // Retry in 2 seconds
+            setTimeout(checkServerStatus, 2000); // Retry in 2 seconds
         }
     }
 }
@@ -73,7 +73,7 @@ function initializeStatusChecks() {
     countdownInterval = setInterval(updateCountdown, 1000);
     updateOnlineStatus(); // Ensure correct initial state
     if (navigator.onLine) {
-        checkBackendStatus(); // Start checking backend status
+        checkServerStatus(); // Start checking server availability
     }
 }
 

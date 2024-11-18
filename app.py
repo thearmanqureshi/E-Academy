@@ -164,12 +164,12 @@ def teacher():
 @app.route('/teacher/assignment_result')
 @login_required
 def assignment_result():
-    return render_template('assignments.html')
+    return render_template('assignments.html', username=current_user.username, email=current_user.email)
 
 @app.route('/teacher/performance_prediction')
 @login_required
 def performance_prediction():
-    return render_template('performancePrediction.html')
+    return render_template('performancePrediction.html', username=current_user.username, email=current_user.email)
 
 # Student Route
 @app.route('/student')
@@ -180,7 +180,7 @@ def student():
 @app.route('/student/courses')
 @login_required
 def courses():
-    return render_template('courses.html')
+    return render_template('courses.html', username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/webDev')
 @login_required
@@ -189,7 +189,7 @@ def webDev():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('webDev.html', show_content=show_content, hide_content=hide_content)
+    return render_template('webDev.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/SQL')
 @login_required
@@ -198,7 +198,7 @@ def SQL():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('SQL.html', show_content=show_content, hide_content=hide_content)
+    return render_template('SQL.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/powerBI')
 @login_required
@@ -207,7 +207,7 @@ def powerBI():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('powerBI.html', show_content=show_content, hide_content=hide_content)
+    return render_template('powerBI.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/DSA')
 @login_required
@@ -216,7 +216,7 @@ def DSA():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('DSA.html', show_content=show_content, hide_content=hide_content)
+    return render_template('DSA.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/python')
 @login_required
@@ -225,7 +225,7 @@ def python():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('python.html', show_content=show_content, hide_content=hide_content)
+    return render_template('python.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/java')
 @login_required
@@ -234,7 +234,7 @@ def java():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('java.html', show_content=show_content, hide_content=hide_content)
+    return render_template('java.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/mongoDB')
 @login_required
@@ -243,7 +243,7 @@ def mongoDB():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('mongoDB.html', show_content=show_content, hide_content=hide_content)
+    return render_template('mongoDB.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/courses/machineLearning')
 @login_required
@@ -252,17 +252,17 @@ def machineLearning():
     show_content = request.args.get('showcontent', '')
     hide_content = request.args.get('hide', '')
     # Pass parameters to the HTML template
-    return render_template('machineLearning.html', show_content=show_content, hide_content=hide_content)
+    return render_template('machineLearning.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email)
 
 @app.route('/student/assignments')
 @login_required
 def assignments():
-    return render_template('assignment.html')
+    return render_template('assignment.html', username=current_user.username, email=current_user.email)
 
 @app.route('/student/study_material')
 @login_required
 def study_material():
-    return render_template('studyMaterial.html')
+    return render_template('studyMaterial.html', username=current_user.username, email=current_user.email)
 
 # Logout Route
 @app.route('/logout')

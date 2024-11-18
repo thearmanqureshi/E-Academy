@@ -1,3 +1,87 @@
+// Overlays
+const spinupOverlay = document.getElementById("spinupOverlay");
+const offlineOverlay = document.getElementById("offlineOverlay");
+const onlineNotification = document.getElementById("onlineNotification");
+const countdownElement = document.getElementById("countdown");
+const progressFill = document.getElementById("progressFill");
+
+let wasOffline = false;
+let isSpinningUp = true;
+const totalTime = 50; // seconds
+let timeLeft = totalTime;
+let checkInterval;
+let countdownInterval;
+
+async function checkBackendStatus() {
+  try {
+    const response = await fetch(
+      "https://eacademy-project.onrender.com/api/status"
+    );
+    if (response.ok) {
+      clearInterval(checkInterval);
+      spinupOverlay.classList.remove("show");
+      isSpinningUp = false;
+    }
+  } catch (error) {
+    console.log("Backend not ready yet");
+  }
+}
+
+function updateCountdown() {
+  if (timeLeft <= 0) {
+    clearInterval(countdownInterval);
+    return;
+  }
+
+  countdownElement.textContent = timeLeft;
+  const progress = ((totalTime - timeLeft) / totalTime) * 100;
+  progressFill.style.width = `${progress}%`;
+  timeLeft--;
+}
+
+function updateOnlineStatus() {
+  if (!navigator.onLine) {
+    spinupOverlay.classList.remove("show");
+    offlineOverlay.classList.add("show");
+    wasOffline = true;
+    clearInterval(checkInterval);
+    clearInterval(countdownInterval);
+  } else {
+    offlineOverlay.classList.remove("show");
+    if (wasOffline) {
+      onlineNotification.classList.add("show");
+      setTimeout(() => {
+        onlineNotification.classList.remove("show");
+      }, 4000);
+      wasOffline = false;
+      initializeStatusChecks();
+    }
+    if (isSpinningUp) {
+      spinupOverlay.classList.add("show");
+    }
+  }
+}
+
+function retryConnection() {
+  window.location.reload();
+}
+
+function initializeStatusChecks() {
+  countdownInterval = setInterval(updateCountdown, 1000);
+  checkInterval = setInterval(checkBackendStatus, 2000);
+  if (isSpinningUp) {
+    spinupOverlay.classList.add("show");
+  }
+}
+
+window.addEventListener("online", updateOnlineStatus);
+window.addEventListener("offline", updateOnlineStatus);
+
+updateOnlineStatus();
+if (navigator.onLine) {
+  initializeStatusChecks();
+}
+
 //-- ----- Swiper JS ----- -
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 2,

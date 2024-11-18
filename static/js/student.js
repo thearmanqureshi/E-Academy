@@ -1,3 +1,17 @@
+// Function to show hide logout popup
+function togglePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = popup.style.display === "block" ? "none" : "block";
+}
+
+document.addEventListener("click", function (event) {
+  const popup = document.getElementById("popup");
+  const userInfo = document.getElementById("user-info");
+
+  if (!popup.contains(event.target) && !userInfo.contains(event.target)) {
+    popup.style.display = "none";
+  }
+});
 // Function to show the dialog box with course details
 function showCourseDetails(title, description, duration) {
   document.getElementById("courseTitle").textContent = title;

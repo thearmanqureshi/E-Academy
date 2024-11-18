@@ -54,12 +54,11 @@ function updateNavbarActiveLink(activeSection) {
   navLinks.forEach((link) => {
     link.classList.remove("active");
 
-    // Get the full URL from the href (relative URL part)
-    const href = link.getAttribute("href");
-
-    // Check if the link href matches the active section in the current full URL
-    if (href && currentURL.includes(`?showcontent=${activeSection}`)) {
-      link.classList.add("active");  // Add "active" class if the full URL includes the query parameter
+    // Check the current URL for the section and manually assign active class
+    if (currentURL.includes('assignments') && link.getAttribute("href").includes('assignments')) {
+      link.classList.add("active");
+    } else if (currentURL.includes('studyMaterial') && link.getAttribute("href").includes('studyMaterial')) {
+      link.classList.add("active");
     }
   });
 }

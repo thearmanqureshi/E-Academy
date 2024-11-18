@@ -7,12 +7,12 @@
   <title>E Academy | Student</title>
 
   <!-- ==== CSS Linking ==== -->
-  <link rel="stylesheet" href="../static/css/student.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}" type="text/css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
       <header>
 
         <div id="header-logo">
-          <img src="../static/Images/Logo.jpg">
+          <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
         </div>
 
         <nav id="navbar">
@@ -164,22 +164,7 @@
   </div>
 
   <!-- ==== JavaScript Linking -->
-  <script src="../static/js/student.js"></script>
-  <script>
-    function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "block" ? "none" : "block";
-    }
-
-    document.addEventListener("click", function (event) {
-      const popup = document.getElementById("popup");
-      const userInfo = document.getElementById("user-info");
-
-      if (!popup.contains(event.target) && !userInfo.contains(event.target)) {
-        popup.style.display = "none";
-      }
-    });
-  </script>
+  <script src="{{ url_for('static', filename='js/student.js') }}"></script>
 </body>
 
 </html>

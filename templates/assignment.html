@@ -7,11 +7,11 @@
   <title>E Academy | Student's Assignment(s)</title>
 
   <!-- ==== CSS Linking ==== -->
-  <link rel="stylesheet" href="../static/css/student.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}" type="text/css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
       <header>
 
         <div id="header-logo">
-          <img src="../static/Images/Logo.jpg">
+          <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
         </div>
 
         <nav id="navbar">
@@ -33,17 +33,23 @@
 
       </header>
 
-      <div id="user-info">
+      <div id="user-info" onclick="togglePopup()">
         <div id="user-icon">
           <i class='bx bxs-user-circle'></i>
         </div>
         <div id="user">
           <div id="username">
-            <h5>Arman Qureshi</h5>
+            <h5>{{ name }}</h5>
           </div>
           <div id="user-email">
-            <h5>thearmanqureshi@gmail.com</h5>
+            <h5>{{ email }}</h5>
           </div>
+        </div>
+      </div>
+
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <a href="{{ url_for('logout') }}" class="logout-button">Sign Out<i class='bx bx-log-out-circle'></i></a>
         </div>
       </div>
     </aside>
@@ -62,7 +68,7 @@
   </div>
 
   <!-- ==== JavaScript Linking -->
-  <script src="../static/js/assignment.js"></script>
+  <script src="{{ url_for('static', filename='js/student.js') }}"></script>
 </body>
 
 </html>

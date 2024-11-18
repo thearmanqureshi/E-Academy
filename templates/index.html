@@ -37,6 +37,50 @@
 
 <body>
   
+    <div class="content">
+      <h1>Your Website Content</h1>
+      <p>This content will be visible when everything is ready.</p>
+    </div>
+
+    <!-- Spin-up overlay -->
+    <div class="status-overlay" id="spinupOverlay">
+      <div class="status-content">
+        <div class="loading-spinner"></div>
+          <h2 class="status-title">Starting up the servers</h2>
+          <p class="status-message">Our free tier servers are spinning up.<br>Our website will be live in:</p>
+        <div class="countdown" id="countdown">50</div>
+        <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+        </div>
+          <p class="status-message">Thank you for your patience!</p>
+        </div>
+    </div>
+
+    <!-- Offline overlay -->
+    <div class="status-overlay" id="offlineOverlay">
+      <div class="status-content">
+        <div class="status-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+          </svg>
+        </div>
+        <h2 class="status-title">You're Offline</h2>
+        <p class="status-message">Please check your internet connection and try again.</p>
+        <button class="retry-button" onclick="retryConnection()">Try Again</button>
+      </div>
+    </div>
+
+    <!-- Online restore notification -->
+    <div class="online-notification" id="onlineNotification">
+        Connection restored!
+    </div>
+  
   <!-- ----- Header ----- -->
   <header>
     <!-- ----- Navbar ----- -->

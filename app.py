@@ -269,6 +269,7 @@ def study_material():
 @login_required
 def logout():
     logout_user()
+    session.clear()
     flash('You have been logged out', 'info')
     return redirect(url_for('signin'))
 

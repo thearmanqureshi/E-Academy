@@ -11,7 +11,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="../../Images/Avatar.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,15 +21,14 @@
       <header>
 
         <div id="header-logo">
-          <img src="../../Images/Logo.jpg">
+          <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
         </div>
 
         <nav id="navbar">
-          <div class="nav-link"><a href="../student.html"><i class='bx bxs-home'></i>Home</a></div>
-          <div class="nav-link"><a href="../courses.html" class="active"><i class='bx bxs-book-bookmark'></i>Courses</a>
-          </div>
-          <div class="nav-link"><a href="../assignment.html"><i class='bx bxs-book-content'></i>Assignment(s)</a></div>
-          <div class="nav-link"><a href="../studyMaterial.html"><i class='bx bxs-bookmarks'></i>Study Material</a></div>
+          <div class="nav-link"><a href="{{ url_for('student') }}"><i class='bx bxs-home'></i>Home</a></div>
+          <div class="nav-link"><a href="{{ url_for('courses') }}" class="active"><i class='bx bxs-book-bookmark'></i>Courses</a></div>
+          <div class="nav-link"><a href="{{ url_for('assignments') }}"><i class='bx bxs-book-content'></i>Assignment(s)</a></div>
+          <div class="nav-link"><a href="{{ url_for('study_material') }}"><i class='bx bxs-bookmarks'></i>Study Material</a></div>
         </nav>
 
       </header>
@@ -91,7 +90,7 @@
   </div>
 
   <!-- ==== JavaScript Linking -->
-  <script src="courses.js"></script>
+  <script src="{{ url_for('static', filename='js/courses.js') }}"></script>
 </body>
 
 </html>

@@ -7,11 +7,11 @@
     <title>E Academy | Assignment Responses</title>
 
     <!-- CSS Linking -->
-    <link rel="stylesheet" href="teacher.css" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/teacher.css') }}" type="text/css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Favicon -->
-    <link rel="icon" href="../Images/Avatar.png" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,35 +21,46 @@
         <aside id="left-sidebar">
             <header>
                 <div id="header-logo">
-                    <img src="../Images/Logo.jpg">
+                    <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
                 </div>
                 <nav id="navbar">
-                    <div class="nav-link"><a href="teacher.html"><i class='bx bxs-dashboard'></i>Dashboard</a></div>
-                    <div class="nav-link"><a href="assignments.html" class="active"><i class='bx bxs-book-content'></i>Assignment</a></div>
-                    <div class="nav-link"><a href="performancePrediction.html"><i class='bx bxs-bar-chart-alt-2'></i>Performance Prediction</a></div>
+                    <div class="nav-link"><a href="{{ url_for('teacher') }}"><i
+                                class='bx bxs-dashboard'></i>Dashboard</a></div>
+                    <div class="nav-link"><a href="{{ url_for('assignment_result') }}" class="active"><i
+                                class='bx bxs-book-content'></i>Assignment</a></div>
+                    <div class="nav-link"><a href="{{ url_for('performance_prediction') }}"><i
+                                class='bx bxs-bar-chart-alt-2'></i>Performance Prediction</a></div>
                 </nav>
             </header>
         </aside>
 
         <main>
             <section id="form-responses">
-                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQ0NXvqiTpDShcLIJvNjUl8Y5E1OPrSWOnMHEGFenBAJOLp02LPD2ODp-AQkbpCPS73Mh_ernNfpvC/pubhtml?widget=true&amp;headers=false"></iframe>
+                <iframe
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQ0NXvqiTpDShcLIJvNjUl8Y5E1OPrSWOnMHEGFenBAJOLp02LPD2ODp-AQkbpCPS73Mh_ernNfpvC/pubhtml?widget=true&amp;headers=false"></iframe>
             </section>
         </main>
 
         <aside id="right-sidebar">
 
-            <div id="user-info">
-                <div id="user">
-                    <div id="username">
-                        <h5>Arman Qureshi</h5>
-                    </div>
-                    <div id="user-email">
-                        <h5>thearmanqureshi@gmail.com</h5>
-                    </div>
-                </div>
+            <div id="user-info" onclick="togglePopup()">
                 <div id="user-icon">
                     <i class='bx bxs-user-circle'></i>
+                </div>
+                <div id="user">
+                    <div id="username">
+                        <h5>{{ name }}</h5>
+                    </div>
+                    <div id="user-email">
+                        <h5>{{ email }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <a href="{{ url_for('logout') }}" class="logout-button">Sign Out<i
+                            class='bx bx-log-out-circle'></i></a>
                 </div>
             </div>
 
@@ -77,7 +88,7 @@
 
     </div>
 
-    <script src="teacher.js"></script>
+    <script src="{{ url_for('static', filename='js/teacher.js') }}"></script>
 </body>
 
 </html>

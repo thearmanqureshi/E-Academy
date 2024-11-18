@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, abort, session, make_response
+from flask import Flask, render_template, redirect, url_for, flash, request, abort, session
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -35,13 +35,6 @@ class User(UserMixin):
 def load_user(user_id):
     user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     return User(user_data) if user_data else None
-
-# Helper function to set no-cache headers
-def set_no_cache_headers(response):
-    response.headers['Cache-Control'] = 'no-store'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
-    return response
 
 # Home Page Route
 @app.route('/')
@@ -116,13 +109,49 @@ def signin():
     
     return render_template('signin.html')
 
-# Logout Route
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    flash('You have been logged out', 'info')
-    return redirect(url_for('signin'))
+# Forgot Password Route
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+        user = mongo.db.users.find_one({'email': email})
+        if user:
+            # If the email is found, redirect to reset password page
+            return redirect(url_for('reset_password', email=email))
+        else:
+            flash('Email not registered. Please check your email or sign up.', 'danger')
+    
+    return render_template('forgotPassword.html')
+
+
+# Reset Password Route
+@app.route('/reset_password/<email>', methods=['GET', 'POST'])
+def reset_password(email):
+    user = mongo.db.users.find_one({'email': email})
+    
+    if not user:
+        flash('No user found with that email address.', 'danger')
+        return redirect(url_for('forgot_password'))
+
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if new_password != confirm_password:
+            flash('Passwords do not match. Please try again.', 'danger')
+            return redirect(url_for('reset_password', email=email))
+
+        # Hash the new password
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+
+        # Update the password in the database
+        mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        
+        flash('Your password has been updated successfully!', 'success')
+        return redirect(url_for('signin'))
+
+    return render_template('resetPassword.html', email=email)
 
 # Teacher Route
 @app.route('/teacher')
@@ -130,95 +159,118 @@ def logout():
 def teacher():
     if not current_user.is_teacher:
         abort(403)
-    response = make_response(render_template('teacher.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('teacher.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/teacher/assignment_result')
 @login_required
 def assignment_result():
-    response = make_response(render_template('assignments.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('assignments.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/teacher/performance_prediction')
 @login_required
 def performance_prediction():
-    response = make_response(render_template('performancePrediction.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('performancePrediction.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 # Student Route
 @app.route('/student')
 @login_required
 def student():
-    response = make_response(render_template('student.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('student.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses')
 @login_required
 def courses():
-    response = make_response(render_template('courses.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('courses.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
-# Further student course routes here...
-# For example:
 @app.route('/student/courses/webDev')
 @login_required
 def webDev():
-    response = make_response(render_template('webDev.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('webDev.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/SQL')
 @login_required
 def SQL():
-    response = make_response(render_template('SQL.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('SQL.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/powerBI')
 @login_required
 def powerBI():
-    response = make_response(render_template('powerBI.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('powerBI.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/DSA')
 @login_required
 def DSA():
-    response = make_response(render_template('DSA.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('DSA.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/python')
 @login_required
 def python():
-    response = make_response(render_template('python.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('python.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/java')
 @login_required
 def java():
-    response = make_response(render_template('java.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('java.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/mongoDB')
 @login_required
 def mongoDB():
-    response = make_response(render_template('mongoDB.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('mongoDB.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/courses/machineLearning')
 @login_required
 def machineLearning():
-    response = make_response(render_template('machineLearning.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    # Get URL parameters
+    show_content = request.args.get('showcontent', '')
+    hide_content = request.args.get('hide', '')
+    # Pass parameters to the HTML template
+    return render_template('machineLearning.html', show_content=show_content, hide_content=hide_content, username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/assignments')
 @login_required
 def assignments():
-    response = make_response(render_template('assignment.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('assignment.html', username=current_user.username, email=current_user.email, name=current_user.name)
 
 @app.route('/student/study_material')
 @login_required
 def study_material():
-    response = make_response(render_template('studyMaterial.html', username=current_user.username, email=current_user.email, name=current_user.name))
-    return set_no_cache_headers(response)
+    return render_template('studyMaterial.html', username=current_user.username, email=current_user.email, name=current_user.name)
+
+# Logout Route
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out', 'info')
+    return redirect(url_for('signin'))
 
 # Error Handling Routes
 @app.errorhandler(403)

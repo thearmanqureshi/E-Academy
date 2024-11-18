@@ -35,15 +35,18 @@ function checkURLParameter() {
   // Check and toggle visibility based on the "showcontent" parameter
   if (showContent === "assignment") {
     toggleVisibility("assignment");
-    updateNavbarActiveLink("assignment");
+    updateNavbarActiveLink("assignment");  // Update active link for "assignment"
   } else if (showContent === "studyMaterial") {
     toggleVisibility("studyMaterial");
-    updateNavbarActiveLink("studyMaterial");
+    updateNavbarActiveLink("studyMaterial");  // Update active link for "studyMaterial"
   }
 }
 
 // Function to update the active class on the navbar links
 function updateNavbarActiveLink(activeSection) {
+  // Get the current full URL (including domain and path)
+  const currentURL = window.location.href;
+
   // Get all navbar links
   const navLinks = document.querySelectorAll("#navbar .nav-link a");
 
@@ -51,10 +54,12 @@ function updateNavbarActiveLink(activeSection) {
   navLinks.forEach((link) => {
     link.classList.remove("active");
 
-    // Check if the link href contains the activeSection query parameter
+    // Get the full URL from the href (relative URL part)
     const href = link.getAttribute("href");
-    if (href && href.includes(`?showcontent=${activeSection}`)) {
-      link.classList.add("active");
+
+    // Check if the link href matches the active section in the current full URL
+    if (href && currentURL.includes(`?showcontent=${activeSection}`)) {
+      link.classList.add("active");  // Add "active" class if the full URL includes the query parameter
     }
   });
 }

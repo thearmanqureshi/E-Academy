@@ -5,28 +5,30 @@ const onlineNotification = document.getElementById('onlineNotification');
 const countdownElement = document.getElementById('countdown');
 const progressFill = document.getElementById('progressFill');
 
-let isSpinningUp = true; // Tracks if the servers are spinning up
+let isSpinningUp = true; // Tracks spin-up state
 const totalTime = 50; // Total countdown time in seconds
 let timeLeft = totalTime;
 let countdownInterval;
 
-// Check backend status once at startup
+// Check if the backend server is live
 async function checkBackendStatus() {
     try {
-        const response = await fetch('https://eacademy-project.onrender.com/api/status');
+        const response = await fetch('https://eacademy-project.onrender.com', {
+            method: 'HEAD', // Use HEAD to reduce response size
+        });
         if (response.ok) {
-            // Backend is live
-            spinupOverlay.classList.remove('show');
+            console.log("Server is live!");
+            spinupOverlay.classList.remove('show'); // Hide overlay
             isSpinningUp = false;
-            clearInterval(countdownInterval);
-        } else {
-            throw new Error('Server not ready');
+            clearInterval(countdownInterval); // Stop countdown
+            return;
         }
+        throw new Error('Server not ready');
     } catch (error) {
-        console.log('Backend not ready yet, retrying...');
+        console.log('Backend not ready yet, retrying...', error);
         if (isSpinningUp) {
             spinupOverlay.classList.add('show');
-            setTimeout(checkBackendStatus, 2000); // Retry after 2 seconds
+            setTimeout(checkBackendStatus, 2000); // Retry in 2 seconds
         }
     }
 }

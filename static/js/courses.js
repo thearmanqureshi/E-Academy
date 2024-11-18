@@ -35,13 +35,9 @@ function checkURLParameter() {
   // Check and toggle visibility based on the "showcontent" parameter
   if (showContent === "assignment") {
     toggleVisibility("assignment");
-
-    // Update the navbar active link to "Assignments"
     updateNavbarActiveLink("assignment");
   } else if (showContent === "studyMaterial") {
     toggleVisibility("studyMaterial");
-
-    // Update the navbar active link to "Study Material"
     updateNavbarActiveLink("studyMaterial");
   }
 }
@@ -54,24 +50,13 @@ function updateNavbarActiveLink(activeSection) {
   // Loop through each link and remove the active class
   navLinks.forEach((link) => {
     link.classList.remove("active");
-  });
 
-  // Add the active class to the relevant link based on the section
-  if (activeSection === "assignment") {
-    const assignmentLink = document.querySelector(
-      "#navbar a[href*='?showcontent=assignment']"
-    );
-    if (assignmentLink) {
-      assignmentLink.classList.add("active");
+    // Check if the link href contains the activeSection query parameter
+    const href = link.getAttribute("href");
+    if (href && href.includes(`?showcontent=${activeSection}`)) {
+      link.classList.add("active");
     }
-  } else if (activeSection === "studyMaterial") {
-    const studyMaterialLink = document.querySelector(
-      "#navbar a[href*='?showcontent=studyMaterial']"
-    );
-    if (studyMaterialLink) {
-      studyMaterialLink.classList.add("active");
-    }
-  }
+  });
 }
 
 // Run the function when the script is loaded

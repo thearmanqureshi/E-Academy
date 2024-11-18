@@ -1,86 +1,82 @@
 // Overlays
-const spinupOverlay = document.getElementById("spinupOverlay");
-const offlineOverlay = document.getElementById("offlineOverlay");
-const onlineNotification = document.getElementById("onlineNotification");
-const countdownElement = document.getElementById("countdown");
-const progressFill = document.getElementById("progressFill");
+const spinupOverlay = document.getElementById('spinupOverlay');
+const offlineOverlay = document.getElementById('offlineOverlay');
+const onlineNotification = document.getElementById('onlineNotification');
+const countdownElement = document.getElementById('countdown');
+const progressFill = document.getElementById('progressFill');
 
-let wasOffline = false;
-let isSpinningUp = true;
-const totalTime = 50; // seconds
+let isSpinningUp = true; // Tracks if the servers are spinning up
+const totalTime = 50; // Total countdown time in seconds
 let timeLeft = totalTime;
-let checkInterval;
 let countdownInterval;
 
+// Check backend status once at startup
 async function checkBackendStatus() {
-  try {
-    const response = await fetch(
-      "https://eacademy-project.onrender.com/api/status"
-    );
-    if (response.ok) {
-      clearInterval(checkInterval);
-      spinupOverlay.classList.remove("show");
-      isSpinningUp = false;
+    try {
+        const response = await fetch('https://eacademy-project.onrender.com/api/status');
+        if (response.ok) {
+            // Backend is live
+            spinupOverlay.classList.remove('show');
+            isSpinningUp = false;
+            clearInterval(countdownInterval);
+        } else {
+            throw new Error('Server not ready');
+        }
+    } catch (error) {
+        console.log('Backend not ready yet, retrying...');
+        if (isSpinningUp) {
+            spinupOverlay.classList.add('show');
+            setTimeout(checkBackendStatus, 2000); // Retry after 2 seconds
+        }
     }
-  } catch (error) {
-    console.log("Backend not ready yet");
-  }
 }
 
+// Countdown for visual feedback
 function updateCountdown() {
-  if (timeLeft <= 0) {
-    clearInterval(countdownInterval);
-    return;
-  }
-
-  countdownElement.textContent = timeLeft;
-  const progress = ((totalTime - timeLeft) / totalTime) * 100;
-  progressFill.style.width = `${progress}%`;
-  timeLeft--;
+    if (timeLeft <= 0 || !isSpinningUp) {
+        clearInterval(countdownInterval);
+        return;
+    }
+    countdownElement.textContent = timeLeft;
+    const progress = ((totalTime - timeLeft) / totalTime) * 100;
+    progressFill.style.width = `${progress}%`;
+    timeLeft--;
 }
 
+// Monitor connection status
 function updateOnlineStatus() {
-  if (!navigator.onLine) {
-    spinupOverlay.classList.remove("show");
-    offlineOverlay.classList.add("show");
-    wasOffline = true;
-    clearInterval(checkInterval);
-    clearInterval(countdownInterval);
-  } else {
-    offlineOverlay.classList.remove("show");
-    if (wasOffline) {
-      onlineNotification.classList.add("show");
-      setTimeout(() => {
-        onlineNotification.classList.remove("show");
-      }, 4000);
-      wasOffline = false;
-      initializeStatusChecks();
+    if (!navigator.onLine) {
+        // Offline scenario
+        spinupOverlay.classList.remove('show');
+        offlineOverlay.classList.add('show');
+    } else {
+        // Online scenario
+        offlineOverlay.classList.remove('show');
+        if (isSpinningUp) {
+            spinupOverlay.classList.add('show');
+        }
     }
-    if (isSpinningUp) {
-      spinupOverlay.classList.add("show");
-    }
-  }
 }
 
+// Retry button action for offline mode
 function retryConnection() {
-  window.location.reload();
+    window.location.reload();
 }
+
+// Initialization
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
 
 function initializeStatusChecks() {
-  countdownInterval = setInterval(updateCountdown, 1000);
-  checkInterval = setInterval(checkBackendStatus, 2000);
-  if (isSpinningUp) {
-    spinupOverlay.classList.add("show");
-  }
+    countdownInterval = setInterval(updateCountdown, 1000);
+    updateOnlineStatus(); // Ensure correct initial state
+    if (navigator.onLine) {
+        checkBackendStatus(); // Start checking backend status
+    }
 }
 
-window.addEventListener("online", updateOnlineStatus);
-window.addEventListener("offline", updateOnlineStatus);
-
-updateOnlineStatus();
-if (navigator.onLine) {
-  initializeStatusChecks();
-}
+// Start the process
+initializeStatusChecks();
 
 //-- ----- Swiper JS ----- -
 var swiper = new Swiper(".mySwiper", {

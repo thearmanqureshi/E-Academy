@@ -23,36 +23,36 @@ function displayEnrolledCourses() {
   // Course data mapping
   const courseData = {
     "Web Development": {
-      image: "../Images/Web-Dev.jpg",
-      studyMaterialLink: "Courses/webDev.html?showMaterial=true",
+      image: "../static/Images/Web-Dev.jpg",
+      studyMaterialLink: "courses/webDev?showcontent=studyMaterial",
     },
     "SQL": {
-      image: "../Images/SQL.jpg",
-      studyMaterialLink: "Courses/SQL.html?showMaterial=true",
+      image: "../static/Images/SQL.jpg",
+      studyMaterialLink: "courses/SQL?showcontent=studyMaterial",
     },
     "Power BI": {
-      image: "../Images/PowerBI.png",
-      studyMaterialLink: "Courses/powerBI.html?showMaterial=true",
+      image: "../static/Images/PowerBI.png",
+      studyMaterialLink: "courses/powerBI?showcontent=studyMaterial",
     },
     "DSA": {
-      image: "../Images/DSA.png",
-      studyMaterialLink: "Courses/DSA.html?showMaterial=true",
+      image: "../static/Images/DSA.png",
+      studyMaterialLink: "courses/DSA?showcontent=studyMaterial",
     },
     "Python": {
-      image: "../Images/Python.png",
-      studyMaterialLink: "Courses/python.html?showMaterial=true",
+      image: "../static/Images/Python.png",
+      studyMaterialLink: "courses/python?showcontent=studyMaterial",
     },
     "Java": {
-      image: "../Images/Java.png",
-      studyMaterialLink: "Courses/java.html?showMaterial=true",
+      image: "../static/Images/Java.png",
+      studyMaterialLink: "courses/java?showcontent=studyMaterial",
     },
     "Mongo DB": {
-      image: "../Images/MongoDB.png",
-      studyMaterialLink: "Courses/mongoDB.html?showMaterial=true",
+      image: "../static/Images/MongoDB.png",
+      studyMaterialLink: "courses/mongoDB?showcontent=studyMaterial",
     },
     "Machine Learning": {
-      image: "../Images/MachineLearning.png",
-      studyMaterialLink: "Courses/machineLearning.html?showMaterial=true",
+      image: "../static/Images/MachineLearning.png",
+      studyMaterialLink: "coursesmachienLearning/?showcontent=studyMaterial",
     },
   };
 

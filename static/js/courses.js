@@ -52,13 +52,13 @@ function updateNavbarActiveLink(activeSection) {
 
   // Loop through each link and remove the active class
   navLinks.forEach((link) => {
-    link.classList.remove("active");
+    link.classList.remove("active"); // Remove active class from all links
 
-    // Check the current URL for the section and manually assign active class
-    if (currentURL.includes('assignments') && link.getAttribute("href").includes('assignments')) {
-      link.classList.add("active");
-    } else if (currentURL.includes('studyMaterial') && link.getAttribute("href").includes('studyMaterial')) {
-      link.classList.add("active");
+    // Check if the link corresponds to the section and URL contains the relevant query parameter
+    if (activeSection === "assignment" && currentURL.includes('?showcontent=assignment') && link.getAttribute("href").includes("assignments")) {
+      link.classList.add("active");  // Add active class to the assignments link
+    } else if (activeSection === "studyMaterial" && currentURL.includes('?showcontent=studyMaterial') && link.getAttribute("href").includes("study_material")) {
+      link.classList.add("active");  // Add active class to the study material link
     }
   });
 }

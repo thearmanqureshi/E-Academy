@@ -23,36 +23,36 @@ function displayEnrolledCourses() {
   // Course data mapping
   const courseData = {
     "Web Development": {
-      image: "../Images/Web-Dev.jpg",
-      assignmentLink: "Courses/webDev.html?showAssignment=true",
+      image: "../static/Images/Web-Dev.jpg",
+      assignmentLink: "courses/webDev?showcontent=assignment",
     },
     "SQL": {
-      image: "../Images/SQL.jpg",
-      assignmentLink: "Courses/SQL.html?showAssignment=true",
+      image: "../static/Images/SQL.jpg",
+      assignmentLink: "courses/SQL?showcontent=assignment",
     },
     "Power BI": {
-      image: "../Images/PowerBI.png",
-      assignmentLink: "Courses/powerBI.html?showAssignment=true",
+      image: "../static/Images/PowerBI.png",
+      assignmentLink: "courses/powerBI?showcontent=assignment",
     },
     "DSA": {
-      image: "../Images/DSA.png",
-      assignmentLink: "Courses/DSA.html?showAssignment=true",
+      image: "../static/Images/DSA.png",
+      assignmentLink: "courses/DSA?showcontent=assignment",
     },
     "Python": {
-      image: "../Images/Python.png",
-      assignmentLink: "Courses/python.html?showAssignment=true",
+      image: "../static/Images/Python.png",
+      assignmentLink: "courses/python?showcontent=assignment",
     },
     "Java": {
-      image: "../Images/Java.png",
-      assignmentLink: "Courses/java.html?showAssignment=true",
+      image: "../static/Images/Java.png",
+      assignmentLink: "courses/java?showcontent=assignment",
     },
     "Mongo DB": {
-      image: "../Images/MongoDB.png",
-      assignmentLink: "Courses/mongoDB.html?showAssignment=true",
+      image: "../static/Images/MongoDB.png",
+      assignmentLink: "courses/mongoDB?showcontent=assignment",
     },
     "Machine Learning": {
-      image: "../Images/machineLearning.png",
-      assignmentLink: "Courses/machineLearning.html?showAssignment=true",
+      image: "../static/Images/machineLearning.png",
+      assignmentLink: "courses/machineLearning?showcontent=assignment",
     },
   };
 

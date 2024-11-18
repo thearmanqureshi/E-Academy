@@ -51,7 +51,7 @@ function displayEnrolledCourses() {
       assignmentLink: "courses/mongoDB?showcontent=assignment",
     },
     "Machine Learning": {
-      image: "../static/Images/machineLearning.png",
+      image: "../static/Images/MachineLearning.png",
       assignmentLink: "courses/machineLearning?showcontent=assignment",
     },
   };

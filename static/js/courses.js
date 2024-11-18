@@ -1,3 +1,18 @@
+// Sign Out Popup
+function togglePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = popup.style.display === "block" ? "none" : "block";
+}
+
+document.addEventListener("click", function (event) {
+  const popup = document.getElementById("popup");
+  const userInfo = document.getElementById("user-info");
+
+  if (!popup.contains(event.target) && !userInfo.contains(event.target)) {
+    popup.style.display = "none";
+  }
+});
+
 // Function to check if URL has the "showcontent" parameter
 function checkURLParameter() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -36,18 +51,22 @@ function updateNavbarActiveLink(activeSection) {
   const navLinks = document.querySelectorAll("#navbar .nav-link a");
 
   // Loop through each link and remove the active class
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.classList.remove("active");
   });
 
   // Add the active class to the relevant link based on the section
   if (activeSection === "assignment") {
-    const assignmentLink = document.querySelector("#navbar a[href='{{ url_for('assignments') }}']");
+    const assignmentLink = document.querySelector(
+      "#navbar a[href='{{ url_for('assignments') }}']"
+    );
     if (assignmentLink) {
       assignmentLink.classList.add("active");
     }
   } else if (activeSection === "studyMaterial") {
-    const studyMaterialLink = document.querySelector("#navbar a[href='{{ url_for('study_material') }}']");
+    const studyMaterialLink = document.querySelector(
+      "#navbar a[href='{{ url_for('study_material') }}']"
+    );
     if (studyMaterialLink) {
       studyMaterialLink.classList.add("active");
     }

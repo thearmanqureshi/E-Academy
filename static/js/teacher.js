@@ -1,3 +1,19 @@
+// Sign Out Popup
+function togglePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = popup.style.display === "block" ? "none" : "block";
+}
+
+document.addEventListener("click", function (event) {
+  const popup = document.getElementById("popup");
+  const userInfo = document.getElementById("user-info");
+
+  // Close the popup if the click is outside the popup and the user info element
+  if (popup && userInfo && !popup.contains(event.target) && !userInfo.contains(event.target)) {
+    popup.style.display = "none";
+  }
+});
+
 // Calendar
 const header = document.querySelector(".calendar h3");
 const dates = document.querySelector(".dates");

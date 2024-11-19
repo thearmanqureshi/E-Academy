@@ -296,39 +296,50 @@ iframe {
 
 #user-info {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: 20px;
   border-radius: 10px;
-  padding: 10px;
-  gap: 30px;
+  padding: 10px 10px 10px 20px;
+  gap: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  cursor: default;
+  cursor: pointer;
   user-select: none;
+  transition: .2s ease-in-out
+}
+
+#user-info:hover {
+  background-color: #e7e7e7;
 }
 
 #user-icon {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup {
   display: none; 
   position: absolute;
-  top: 80px;
-  right: 13px;
-  width: 220px;
-  background-color: #3d3d3d;
+  top: 85px;
+  right: 20px;
+  width: 320px;
+  background-color: #d1d1d1;
+  color: black;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .popup::after {
   content: "";
   position: absolute;
-  left: 5%;
+  top: -30%;
+  left: 30px;
   border-width: 10px;
   border-style: solid;
-  border-color: #3d3d3d transparent transparent transparent;
+  border-color: transparent transparent #d1d1d1 transparent;
 }
 
 .popup-content {
@@ -338,21 +349,23 @@ iframe {
   padding: 10px;
   gap: 10px;
   text-wrap: nowrap;
-  color: white;
 }
 
 .logout-button {
-  color: white;
+  color: black;
+  width: 100%;
   padding: 10px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  transition: .2s ease-in-out
 }
 
 .logout-button:hover {
   background-color: #c9302c;
+  color: white;
 }
 
 .logout-button i {

@@ -5,14 +5,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E Academy | Sign In</title>
-  <link rel="stylesheet" href="../static/css/signinup.css" type="text/css">
+
+  <!-- ----- CSS Linking ----- -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signinup.css') }}" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon">
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
+
+  <!-- Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
+  <header>
+    <div id="logo-container">
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='Images/Logo.jpg') }}" id="logo" alt="E Academy Logo"></a>
+    </div>
+  </header>
+  <main>
+    <div id="form-container">
+      <h2>Sign In</h2>
+      <div id="form-box">
+        <form action="{{ url_for('signin') }}" method="POST">
+
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-user"></i></span>
+            <input type="text" name="username" required>
+            <label>Username</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" name="password" required>
+            <label>Password</label>
+          </div>
+
+          <!-- Google reCAPTCHA -->
+          <div class="g-recaptcha" 
+            data-sitekey="6Lec6IAqAAAAAFz5_OLgFbPnUJ2KjgNXScRRJX8V" 
+            data-callback="captchaVerified" 
+            data-expired-callback="captchaExpired">
+          </div>
+
+          <button type="submit" id="btn">Sign In</button>
+
+          <div id="redirect">
+            <p>Forgot Password? <a href="{{ url_for('forgot_password') }}">Reset Password</a></p>
+            <br>
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Register Now</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
   {% with messages = get_flashed_messages(with_categories=True) %}
   {% if messages %}
   <div class="flash-messages">
@@ -36,41 +82,7 @@
   </script>
   {% endif %}
   {% endwith %}
-  </div>
-  <header>
-    <div id="logo-container">
-      <a href="{{ url_for('home') }}"><img src="../static/Images/Logo.jpg" id="logo"></a>
-    </div>
-  </header>
-  <main>
-    <div id="form-container">
-      <h2>Sign In</h2>
-      <div id="form-box">
-        <form action="{{ url_for('signin') }}" method="POST">
-
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-user"></i></span>
-            <input type="text" name="username" required>
-            <label>Username</label>
-          </div>
-
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" name="password" required>
-            <label>Password</label>
-          </div>
-
-          <button type="submit" id="btn">Sign In</button>
-
-          <div id="redirect">
-            <p>Forgot Password? <a href="{{ url_for('forgot_password') }}">Reset Password</a></p>
-            <br>
-            <p>Don't have an account? <a href="{{ url_for('signup') }}">Register Now</a></p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
+  <script src="{{ url_for('static', filename='js/recaptcha.js') }}"></script>
 </body>
 
 </html>

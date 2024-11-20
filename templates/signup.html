@@ -5,42 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E Academy | Sign Up</title>
-  <link rel="stylesheet" href="../static/css/signinup.css" type="text/css">
+  
+  <!-- ----- CSS Linking ----- -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signinup.css') }}" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon">
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
+
+  <!-- Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
   <header>
     <div id="logo-container">
-      <a href="{{ url_for('home') }}"><img src="../static/Images/Logo.jpg" id="logo"></a>
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='Images/Logo.jpg') }}" id="logo" alt="E Academy Logo"></a>
     </div>
   </header>
-  {% with messages = get_flashed_messages(with_categories=True) %}
-  {% if messages %}
-  <div class="flash-messages">
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-  </div>
-
-  <!-- JavaScript to hide flash messages after 5 seconds -->
-  <script>
-    setTimeout(function () {
-      var flashMessages = document.querySelectorAll('.flash-messages .alert');
-      flashMessages.forEach(function (message) {
-        message.classList.add('fade-out');
-        setTimeout(() => message.remove(), 500); // Removes message after fading out
-      });
-    }, 5000); // 5000ms = 5 seconds
-  </script>
-  {% endif %}
-  {% endwith %}
   <main>
     <div id="form-container">
       <h2>Sign Up</h2>
@@ -71,6 +53,13 @@
             <label>Password</label>
           </div>
 
+          <!-- Google reCAPTCHA -->
+          <div class="g-recaptcha" 
+            data-sitekey="6Lec6IAqAAAAAFz5_OLgFbPnUJ2KjgNXScRRJX8V" 
+            data-callback="captchaVerified" 
+            data-expired-callback="captchaExpired">
+          </div>
+
           <button type="submit" id="btn">Sign Up</button>
 
           <div id="redirect">
@@ -79,6 +68,30 @@
       </div>
     </div>
   </main>
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+  <div class="flash-messages">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- JavaScript to hide flash messages after 5 seconds -->
+  <script>
+    setTimeout(function () {
+      var flashMessages = document.querySelectorAll('.flash-messages .alert');
+      flashMessages.forEach(function (message) {
+        message.classList.add('fade-out');
+        setTimeout(() => message.remove(), 500); // Removes message after fading out
+      });
+    }, 5000); // 5000ms = 5 seconds
+  </script>
+  {% endif %}
+  {% endwith %}
+  <script src="{{ url_for('static', filename='js/recaptcha.js') }}"></script>
 </body>
 
 </html>

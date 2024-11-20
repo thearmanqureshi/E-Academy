@@ -4,12 +4,12 @@ document.getElementById("toggle-password-icon").addEventListener("click", functi
     const icon = this;
     if (passwordField.type === "password") {
       passwordField.type = "text";
-      icon.classList.remove("fa-lock");
-      icon.classList.add("fa-unlock");
+      icon.classList.remove("fa-lock-open");
+      icon.classList.add("fa-lock");
     } else {
       passwordField.type = "password";
-      icon.classList.remove("fa-unlock");
-      icon.classList.add("fa-lock");
+      icon.classList.remove("fa-lock");
+      icon.classList.add("fa-lock-open");
     }
 });
 

@@ -5,6 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from bson.objectid import ObjectId
 from config import ProductionConfig, DevelopmentConfig
 import os
+import requests
 
 # Initialize Flask app and config
 app = Flask(__name__)
@@ -55,6 +56,18 @@ def contributors():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        
+        # Validate reCAPTCHA
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        secret_key = app.config['RECAPTCHA_SECRET_KEY']
+        verify_url = 'https://www.google.com/recaptcha/api/siteverify'
+        payload = {'secret': secret_key, 'response': recaptcha_response}
+        response = requests.post(verify_url, data=payload).json()
+
+        if not response.get('success'):
+            flash('Please verify the CAPTCHA.', 'danger')
+            return redirect(url_for('signup'))
+        
         name = request.form.get('name')
         username = request.form.get('username')
         email = request.form.get('email')
@@ -82,6 +95,18 @@ def signup():
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
+
+        # Validate reCAPTCHA
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        secret_key = app.config['RECAPTCHA_SECRET_KEY']
+        verify_url = 'https://www.google.com/recaptcha/api/siteverify'
+        payload = {'secret': secret_key, 'response': recaptcha_response}
+        response = requests.post(verify_url, data=payload).json()
+
+        if not response.get('success'):
+            flash('Please verify the CAPTCHA.', 'danger')
+            return redirect(url_for('signin'))
+        
         username = request.form.get('username')
         password = request.form.get('password')
         

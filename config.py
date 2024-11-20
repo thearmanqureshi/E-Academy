@@ -4,6 +4,7 @@ from datetime import timedelta
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     MONGO_URI = os.environ.get('MONGO_URI')
+    RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     PERMANENT_SESSION_LIFETIME = timedelta(minutes=30)
     

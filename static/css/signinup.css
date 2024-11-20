@@ -121,7 +121,7 @@ input:-webkit-autofill:active{
   outline: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 #redirect {

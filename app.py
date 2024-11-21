@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, abort, session
+from flask import Flask, render_template, redirect, url_for, flash, request, abort, session, jsonify
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -17,6 +17,8 @@ else:
 
 # Set up MongoDB, bcrypt, and login manager
 mongo = PyMongo(app)
+app.config["MONGO_COURSE_URI"] = os.environ.get("MONGO_COURSE_URL")
+course_mongo = PyMongo(app, uri=app.config["MONGO_COURSE_URI"])
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'signin'
@@ -201,6 +203,42 @@ def performance_prediction():
 @login_required
 def student():
     return render_template('student.html', username=current_user.username, email=current_user.email, name=current_user.name)
+
+# Fetch all enrolled courses for the logged-in student
+@app.route('/api/courses', methods=['GET'])
+@login_required
+def get_courses():
+    courses = course_mongo.db.enrollments.find({"user_id": ObjectId(current_user.id)})
+    course_list = [course["course_name"] for course in courses]
+    return {"courses": course_list}
+
+# Enroll in a course for the logged-in student
+@app.route('/api/courses', methods=['POST'])
+@login_required
+def add_course():
+    data = request.json
+    course_name = data.get('course_name')
+    if not course_mongo.db.enrollments.find_one({"user_id": ObjectId(current_user.id), "course_name": course_name}):
+        course_mongo.db.enrollments.insert_one({
+            "user_id": ObjectId(current_user.id),
+            "course_name": course_name
+        })
+        return {"message": f"{course_name} enrolled successfully"}, 201
+
+    return {"error": f"Already enrolled in {course_name}"}, 400
+
+# Disenroll a course for the logged-in user
+@app.route('/api/courses/<course_name>', methods=['DELETE'])
+@login_required
+def delete_course(course_name):
+    result = course_mongo.db.enrollments.delete_one({
+        "user_id": ObjectId(current_user.id),
+        "course_name": course_name
+    })
+
+    if result.deleted_count > 0:
+        return {"message": f"Disenrolled from {course_name}"}
+    return {"error": f"Failed to disenroll from {course_name}"}, 400
 
 @app.route('/student/courses')
 @login_required

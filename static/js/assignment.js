@@ -1,4 +1,4 @@
-// Function to show hide logout popup
+// Function to show/hide logout popup
 function togglePopup() {
   const popup = document.getElementById("popup");
   popup.style.display = popup.style.display === "block" ? "none" : "block";
@@ -13,11 +13,22 @@ document.addEventListener("click", function (event) {
   }
 });
 
+// Function to fetch enrolled courses from the backend
+async function fetchEnrolledCourses() {
+  try {
+    const response = await fetch('/api/courses'); // Call the backend API
+    const data = await response.json();
+    return data.courses || [];
+  } catch (error) {
+    console.error("Error fetching enrolled courses:", error);
+    return [];
+  }
+}
+
 // Function to display the enrolled courses and their assignments
-function displayEnrolledCourses() {
+async function displayEnrolledCourses() {
   const enrolledCoursesDiv = document.getElementById("enrolledCourses");
-  const enrolledCourses =
-    JSON.parse(localStorage.getItem("enrolledCourses")) || [];
+  const enrolledCourses = await fetchEnrolledCourses(); // Fetch courses from backend
 
   // Clear the current list
   enrolledCoursesDiv.innerHTML = "";
@@ -83,7 +94,7 @@ function displayEnrolledCourses() {
           <h3>${courseName}</h3>
           <p>Assignment on ${courseName}</p>
           <div class="course-actions" style="display: flex; gap: 10px; margin-top: 10px;">
-            <button class="course-btn" style="flex: 1;" onclick="goToAssignment('${courseInfo.assignmentLink}'); setContentPreference();">Go to Assignment</button>
+            <button class="course-btn" style="flex: 1;" onclick="goToAssignment('${courseInfo.assignmentLink}')">Go to Assignment</button>
           </div>
         `;
 

@@ -12,6 +12,7 @@ document.addEventListener("click", function (event) {
     popup.style.display = "none";
   }
 });
+
 // Function to show the dialog box with course details
 function showCourseDetails(title, description, duration) {
   document.getElementById("courseTitle").textContent = title;
@@ -32,26 +33,68 @@ function closeDialog() {
   document.getElementById("courseDialog").style.display = "none";
 }
 
-// Function to enroll in a course
-function enrollCourse(courseName) {
-  // Retrieve existing enrolled courses from localStorage
-  let enrolledCourses =
-    JSON.parse(localStorage.getItem("enrolledCourses")) || [];
-
-  // Check if the course is already enrolled
-  if (!enrolledCourses.includes(courseName)) {
-    enrolledCourses.push(courseName);
-    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
-    alert(courseName + " has been added to your enrolled courses!");
-  } else {
-    alert("You are already enrolled in " + courseName);
+// Function to fetch enrolled courses from the backend
+async function fetchEnrolledCourses() {
+  try {
+    const response = await fetch('/api/courses');
+    const data = await response.json();
+    return data.courses || [];
+  } catch (error) {
+    console.error("Error fetching enrolled courses:", error);
+    return [];
   }
 }
 
-function displayEnrolledCourses() {
+// Function to enroll in a course
+async function enrollCourse(courseName) {
+  try {
+    const response = await fetch('/api/courses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ course_name: courseName }),
+    });
+
+    if (response.ok) {
+      alert(courseName + " has been added to your enrolled courses!");
+      displayEnrolledCourses();
+    } else {
+      const errorData = await response.json();
+      alert(errorData.error);
+    }
+  } catch (error) {
+    console.error("Error enrolling in course:", error);
+  }
+}
+
+// Function to disenroll from a course
+async function deleteCourse(courseName) {
+  const confirmDeletion = confirm(`Are you sure you want to disenroll from ${courseName}?`);
+
+  if (confirmDeletion) {
+    try {
+      const response = await fetch(`/api/courses/${courseName}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        alert(`${courseName} has been successfully removed from your enrolled courses.`);
+        displayEnrolledCourses();
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error);
+      }
+    } catch (error) {
+      console.error("Error disenrolling from course:", error);
+    }
+  }
+}
+
+// Function to display enrolled courses
+async function displayEnrolledCourses() {
   const enrolledCoursesDiv = document.getElementById("enrolledCourses");
-  const enrolledCourses =
-    JSON.parse(localStorage.getItem("enrolledCourses")) || [];
+  const enrolledCourses = await fetchEnrolledCourses();
 
   // Clear the current list
   enrolledCoursesDiv.innerHTML = "";
@@ -73,12 +116,10 @@ function displayEnrolledCourses() {
   const courseData = {
     "Web Development": {
       image: "../static/Images/Web-Dev.jpg",
-      description:
-        "Web Development Course by Apna College",
+      description: "Web Development Course by Apna College",
       details: {
         title: "Web Development",
-        description:
-          "Web Development Course by Apna College",
+        description: "Web Development Course by Apna College",
         duration: "No. Of Lessons: 58",
       },
     },
@@ -102,11 +143,10 @@ function displayEnrolledCourses() {
     },
     DSA: {
       image: "../static/Images/DSA.png",
-      description: "complete c++ DSA course | learn DSA with c++ from basics",
+      description: "Complete C++ DSA course | Learn DSA with C++ from basics",
       details: {
         title: "C++ DSA",
-        description:
-          "complete c++ DSA course | learn DSA with c++ from basics.",
+        description: "Complete C++ DSA course | Learn DSA with C++ from basics.",
         duration: "Duration: 8 weeks",
       },
     },
@@ -172,10 +212,8 @@ function displayEnrolledCourses() {
   enrolledCoursesDiv.appendChild(coursesContainer);
 }
 
-// Add the startCourse function
 // Function to start a course
 function startCourse(courseName) {
-  // Map course names to their respective page URLs
   const coursePages = {
     "Web Development": "courses/webDev",
     "SQL": "courses/SQL",
@@ -187,58 +225,11 @@ function startCourse(courseName) {
     "Machine Learning": "courses/machineLearning",
   };
 
-  // Get the URL of the corresponding course page
   const coursePageURL = coursePages[courseName];
-
-  // Check if the course page URL is found
   if (coursePageURL) {
-    // Redirect the user to the course page
     window.location.href = coursePageURL;
   } else {
-    // Display an error message if the course page is not found
     alert(`Sorry, the course page for "${courseName}" is not available.`);
-  }
-}
-
-function deleteCourse(courseName) {
-  // Ask for confirmation before deleting the course
-  const confirmDeletion = confirm(`Are you sure you want to disenroll from ${courseName}?`);
-
-  if (confirmDeletion) {
-    let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
-
-    // Find and remove the course by name
-    const courseIndex = enrolledCourses.indexOf(courseName);
-    if (courseIndex > -1) {
-      enrolledCourses.splice(courseIndex, 1);
-      localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
-
-      // Refresh the displayed list of enrolled courses
-      displayEnrolledCourses();
-      alert(`${courseName} has been successfully removed from your enrolled courses.`);
-    }
-  } else {
-    // User canceled the deletion
-    alert("Course deletion canceled.");
-  }
-}
-
-
-// Update the enrollCourse function
-function enrollCourse(courseName) {
-  let enrolledCourses =
-    JSON.parse(localStorage.getItem("enrolledCourses")) || [];
-
-  // Check if the course is already enrolled
-  if (!enrolledCourses.includes(courseName)) {
-    enrolledCourses.push(courseName);
-    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
-    alert(courseName + " has been added to your enrolled courses!");
-
-    // Refresh the displayed list of enrolled courses
-    displayEnrolledCourses();
-  } else {
-    alert("You are already enrolled in " + courseName);
   }
 }
 

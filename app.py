@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, abort, session, jsonify
+from flask import Flask, render_template, redirect, url_for, flash, request, abort, session, jsonify, make_response
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user

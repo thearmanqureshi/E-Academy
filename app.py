@@ -178,7 +178,7 @@ def reset_password(email):
         hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
 
         # Update the password in the database
-        mongo.db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        auth_db.users.update_one({'email': email}, {'$set': {'password': hashed_password}})
         
         flash('Your password has been updated successfully!', 'success')
         return redirect(url_for('signin'))

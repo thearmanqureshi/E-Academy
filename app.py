@@ -16,12 +16,13 @@ else:
     app.config.from_object(DevelopmentConfig)
 
 # Set up MongoDB, bcrypt, and login manager
-app.config["MONGO_AUTH_URI"] = os.environ.get("MONGO_AUTH_URL")
-auth_mongo = PyMongo(app, uri=app.config["MONGO_AUTH_URI"])
-app.config["MONGO_COURSE_URI"] = os.environ.get("MONGO_COURSE_URL")
-course_mongo = PyMongo(app, uri=app.config["MONGO_COURSE_URI"])
-app.config["MONGO_PREDICTION_URI"] = os.environ.get("MONGO_PREDICTION_URL")
-prediction_mongo = PyMongo(app, uri=app.config["MONGO_PREDICTION_URI"])
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+mongo_client = PyMongo(app)
+
+auth_db = mongo_client.cx["auth_db"]  # Authentication database
+course_db = mongo_client.cx["course_db"]  # Course management database
+prediction_db = mongo_client.cx["prediction_db"]  # Prediction database
+
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'signin'
@@ -39,7 +40,7 @@ class User(UserMixin):
 # Load user
 @login_manager.user_loader
 def load_user(user_id):
-    user_data = auth_mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    user_data = auth_db.users.find_one({'_id': ObjectId(user_id)})
     return User(user_data) if user_data else None
 
 # Home Page Route
@@ -79,17 +80,18 @@ def signup():
         password = request.form.get('password')
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         
-        if auth_mongo.db.users.find_one({'username': username}) or auth_mongo.db.users.find_one({'email': email}):
+        if auth_db.users.find_one({'username': username}) or auth_db.users.find_one({'email': email}):
             flash('Username or email already registered. Please choose different ones.', 'danger')
             return redirect(url_for('signup'))
-            
-        auth_mongo.db.users.insert_one({
+                    
+        auth_db.users.insert_one({
             'name': name,
             'username': username,
             'email': email,
             'password': hashed_password,
             'is_teacher': False
         })
+
         flash('Account created! You can now sign in.', 'success')
         return redirect(url_for('signin'))
 
@@ -114,7 +116,7 @@ def signin():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        user_data = auth_mongo.db.users.find_one({'username': username})
+        user_data = auth_db.users.find_one({'username': username})
         
         if not user_data:
             flash('Username not registered. Please sign up first.', 'info')
@@ -143,7 +145,8 @@ def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
         
-        user = mongo.db.users.find_one({'email': email})
+        user = auth_db.users.find_one({'email': email})
+        
         if user:
             # If the email is found, redirect to reset password page
             return redirect(url_for('reset_password', email=email))
@@ -156,7 +159,8 @@ def forgot_password():
 # Reset Password Route
 @app.route('/reset_password/<email>', methods=['GET', 'POST'])
 def reset_password(email):
-    user = mongo.db.users.find_one({'email': email})
+    
+    user = auth_db.users.find_one({'email': email})
     
     if not user:
         flash('No user found with that email address.', 'danger')
@@ -209,7 +213,7 @@ def student():
 @app.route('/api/courses', methods=['GET'])
 @login_required
 def get_courses():
-    courses = course_mongo.db.enrollments.find({"user_id": ObjectId(current_user.id)})
+    courses = course_db.enrollments.find({"user_id": ObjectId(current_user.id)})
     course_list = [course["course_name"] for course in courses]
     return {"courses": course_list}
 
@@ -219,8 +223,8 @@ def get_courses():
 def add_course():
     data = request.json
     course_name = data.get('course_name')
-    if not course_mongo.db.enrollments.find_one({"user_id": ObjectId(current_user.id), "course_name": course_name}):
-        course_mongo.db.enrollments.insert_one({
+    if not course_db.enrollments.find_one({"user_id": ObjectId(current_user.id), "course_name": course_name}):
+        course_db.enrollments.insert_one({
             "user_id": ObjectId(current_user.id),
             "course_name": course_name
         })
@@ -232,7 +236,7 @@ def add_course():
 @app.route('/api/courses/<course_name>', methods=['DELETE'])
 @login_required
 def delete_course(course_name):
-    result = course_mongo.db.enrollments.delete_one({
+    result = course_db.enrollments.delete_one({
         "user_id": ObjectId(current_user.id),
         "course_name": course_name
     })
@@ -332,6 +336,9 @@ def study_material():
 @app.route('/logout')
 @login_required
 def logout():
+    session.pop('user', None)  # Remove 'user' from session if it exists
+    session.pop('username', None)  # Remove 'username' from session if it exists
+    session.pop('email', None)  # Remove 'email' from session if it exists
     logout_user()
     flash('You have been logged out', 'info')
     return redirect(url_for('signin'))

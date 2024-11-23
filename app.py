@@ -341,7 +341,13 @@ def logout():
     session.pop('email', None)  # Remove 'email' from session if it exists
     logout_user()
     flash('You have been logged out', 'info')
-    return redirect(url_for('signin'))
+    response = make_response(redirect(url_for('signin')))
+    # Prevent caching of this page
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    
+    return response
 
 # Error Handling Routes
 @app.errorhandler(403)

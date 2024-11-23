@@ -16,9 +16,12 @@ else:
     app.config.from_object(DevelopmentConfig)
 
 # Set up MongoDB, bcrypt, and login manager
-mongo = PyMongo(app)
+app.config["MONGO_AUTH_URI"] = os.environ.get("MONGO_AUTH_URL")
+auth_mongo = PyMongo(app, uri=app.config["MONGO_AUTH_URI"])
 app.config["MONGO_COURSE_URI"] = os.environ.get("MONGO_COURSE_URL")
 course_mongo = PyMongo(app, uri=app.config["MONGO_COURSE_URI"])
+app.config["MONGO_PREDICTION_URI"] = os.environ.get("MONGO_PREDICTION_URL")
+prediction_mongo = PyMongo(app, uri=app.config["MONGO_PREDICTION_URI"])
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'signin'
@@ -36,7 +39,7 @@ class User(UserMixin):
 # Load user
 @login_manager.user_loader
 def load_user(user_id):
-    user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    user_data = auth_mongo.db.users.find_one({'_id': ObjectId(user_id)})
     return User(user_data) if user_data else None
 
 # Home Page Route
@@ -76,13 +79,11 @@ def signup():
         password = request.form.get('password')
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         
-        # Check if username or email already exists
-        if mongo.db.users.find_one({'username': username}) or mongo.db.users.find_one({'email': email}):
+        if auth_mongo.db.users.find_one({'username': username}) or auth_mongo.db.users.find_one({'email': email}):
             flash('Username or email already registered. Please choose different ones.', 'danger')
             return redirect(url_for('signup'))
-        
-        # Insert user data with username and email
-        mongo.db.users.insert_one({
+            
+        auth_mongo.db.users.insert_one({
             'name': name,
             'username': username,
             'email': email,
@@ -91,6 +92,7 @@ def signup():
         })
         flash('Account created! You can now sign in.', 'success')
         return redirect(url_for('signin'))
+
     return render_template('signup.html')
 
 # Sign In Route
@@ -112,10 +114,9 @@ def signin():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        user_data = mongo.db.users.find_one({'username': username})
+        user_data = auth_mongo.db.users.find_one({'username': username})
         
         if not user_data:
-            # If the username is not found, flash an info message and redirect to sign-up
             flash('Username not registered. Please sign up first.', 'info')
             return redirect(url_for('signup'))
         

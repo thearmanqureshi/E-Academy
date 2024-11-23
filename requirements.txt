@@ -5,5 +5,8 @@ flask-pymongo
 flask-bcrypt
 pymongo
 gunicorn
-python-dotenv
 requests
+numpy
+pandas
+tensorflow-lite
+scikit-learn

@@ -8,5 +8,5 @@ gunicorn
 requests
 numpy
 pandas
-tensorflow-lite
+tensorflow
 scikit-learn

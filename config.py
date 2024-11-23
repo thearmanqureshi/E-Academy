@@ -3,7 +3,7 @@ from datetime import timedelta
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    MONGO_AUTH_URL = os.environ.get('MONGO_AUTH_URL')
+    MONGO_URL = os.environ.get('MONGO_AUTH_URL')
     MONGO_COURSE_URL = os.environ.get('MONGO_COURSE_URL')
     MONGO_PREDICTION_URL = os.environ.get('MONGO_PREDICTION_URL')
     RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')

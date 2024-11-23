@@ -185,6 +185,23 @@ def reset_password(email):
 
     return render_template('resetPassword.html', email=email)
 
+# Prevent caching of protected pages
+@app.before_request
+def prevent_cache_for_protected_pages():
+    # Check if the user is logged in and trying to access a protected page
+    if current_user.is_authenticated:
+        # Set no-cache headers globally for all protected routes
+        if request.endpoint != 'logout' and request.endpoint != 'signin':  # Skip logout and signin routes
+            response = make_response()
+            response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            return response
+
+    # Redirect to login page if user is not logged in and trying to access protected page
+    elif request.endpoint not in ['signin', 'signup']:  # Skip signin and signup routes
+        return redirect(url_for('signin'))  # Redirect to the login page
+
 # Teacher Route
 @app.route('/teacher')
 @login_required

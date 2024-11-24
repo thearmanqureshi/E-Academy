@@ -176,3 +176,11 @@ input:-webkit-autofill:active{
   opacity: 0;
   transition: opacity 0.5s ease-out;
 }
+
+/*-- ----- Responsiveness {Multi Device Compatibility} ----- -*/
+@media (max-width: 510px) {
+  #form-container {
+    height: auto;
+    transform: scale(.8);
+  }  
+}

@@ -187,7 +187,8 @@ input:-webkit-autofill:active{
   #form-container {
     transform: scale(.8);
   }
-  #header {
+  
+  header {
     margin: 50px 0 0 0;
   }
 }

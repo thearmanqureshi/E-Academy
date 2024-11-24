@@ -25,6 +25,7 @@ header {
   display: flex;
   justify-content: center;
   margin: 100px 0 50px 0;
+  width: 100%;
 }
 
 #logo-container {
@@ -39,8 +40,9 @@ header {
 
 /*-- ----- Sign In / Sign Up Form ----- -*/
 #form-container {
-  width: 500px;
-  min-width: 500px;
+  max-width: 500px;
+  width: 100%;
+  min-width: 400px;
   height: 100%;
   padding: 70px 50px;
   background-color: #bebebe23;
@@ -125,7 +127,10 @@ input:-webkit-autofill:active{
   outline: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 25px;
+}
+
+.g-recaptcha {
+  margin-bottom: 25px;
 }
 
 #redirect {
@@ -180,7 +185,6 @@ input:-webkit-autofill:active{
 /*-- ----- Responsiveness {Multi Device Compatibility} ----- -*/
 @media (max-width: 510px) {
   #form-container {
-    height: auto;
     transform: scale(.8);
   }  
 }

@@ -24,15 +24,16 @@
   <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/bff694d2-8316-4d36-a915-7376d7a369a3.png?token=I_zHRgN948MwO4mXmQXg1U18rgPUXwpYAbieFPj0-pE&height=679&width=1200&expires=33267927949">
 
   <!-- ----- Css Linking ----- -->
-  <link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 
   <!-- ----- Scroll Reveal JS ----- -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
@@ -41,7 +42,7 @@
     <!-- ----- Navbar ----- -->
     <div id="navbar">
       <div id="logo-container">
-        <img src="../static/Images/Logo.jpg" id="logo" alt="Logo" />
+        <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
       </div>
 
       <nav id="nav-links">
@@ -75,8 +76,8 @@
       </nav>
 
       <div id="menu">
-        <i id="menu-open" class="fa-solid fa-bars"></i>
-        <i id="menu-close" class="fa-solid fa-xmark"></i>
+        <i id="menu-open" class='bx bx-menu-alt-right'></i>
+        <i id="menu-close" class="fa-solid fa-chevron-up"></i>
       </div>
     </div>
   </header>
@@ -398,7 +399,7 @@
 
   <!-- ----- JavaScript Linking ----- -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="../static/js/script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>

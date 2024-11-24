@@ -7,23 +7,25 @@
   <title>E Academy | Project's Contributors</title>
 
   <!-- ----- CSS Linking ----- -->
-  <link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 
-  <!-- Scroll Reveal JS -->
+  <!-- ----- Scroll Reveal JS ----- -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <!-- ----- Favicon ----- -->
-  <link rel="icon" href="../static/Images/Favicon.png" type="image/x-icon" />
+  <link rel="icon" href="{{ url_for('static', filename='Images/Favicon.png') }}" type="image/x-icon" />
 </head>
 
 <body>
   <!-- ----- Header ----- -->
   <header>
-
+    <!-- ----- Navbar ----- -->
     <div id="navbar">
       <div id="logo-container">
-        <img src="../static/Images/Logo.jpg" id="logo" alt="Logo" />
+        <img src="{{ url_for('static', filename='Images/Logo.jpg') }}">
       </div>
 
       <nav id="nav-links">
@@ -34,11 +36,21 @@
 
       <div id="search-bar">
         <div id="search-icon">
-          <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div id="search-box">
-          <input type="search" placeholder="Search E Academy Courses" onclick="redirectToHome()"/>
+          <input type="text" id="search" name="search" placeholder="Search E Academy Courses" list="search-suggestions"/>
         </div>
+        <datalist id="search-suggestions">
+          <option value="Web Development">
+          <option value="SQL">
+          <option value="PowerBI Dashboard">
+          <option value="DSA">
+          <option value="Python">
+          <option value="Java">
+          <option value="Mongo DB">
+          <option value="Machine Learning">
+        </datalist>
       </div>
 
       <nav id="signin-up">
@@ -47,8 +59,8 @@
       </nav>
 
       <div id="menu">
-        <i id="menu-open" class="fa-solid fa-bars"></i>
-        <i id="menu-close" class="fa-solid fa-xmark"></i>
+        <i id="menu-open" class='bx bx-menu-alt-right'></i>
+        <i id="menu-close" class="fa-solid fa-chevron-up"></i>
       </div>
     </div>
   </header>
@@ -190,13 +202,22 @@
     </div>
   </footer>
 
-  <!-- ----- Scroll Reveal JS ----- -->
   <script>
+    // Scroll Reveal JS
     ScrollReveal().reveal('#headline', { duration: 1500 });
     ScrollReveal().reveal('.contributors-profile', { interval: 200 });
+
+    // Menu Toogle
+    const menuButton = document.getElementById("menu");
+    const navbar = document.getElementById("navbar");
+
+    menuButton.addEventListener("click", () => {
+      menuButton.classList.toggle("active");
+      navbar.classList.toggle("active");
+    });
   </script>
   <!-- ----- JavaScript Linking ----- -->
-  <script src="../static/js/script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>

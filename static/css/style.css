@@ -54,6 +54,8 @@ section h1, h2 {
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-wrap: nowrap;
+  transition: height .4s ease;
 }
 
 #navbar a {
@@ -87,6 +89,8 @@ section h1, h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 20px;
+  transition: all .4s ease;
 }
 
 #logo {
@@ -96,11 +100,11 @@ section h1, h2 {
 #search-bar {
   display: flex;
   align-items: center;
-  width: 1000px;
+  width: 800px;
   height: 30px;
   background-color: #ffffff;
   border-radius: 20px;
-  margin-right: 7px;
+  margin: 0 20px 0 10px;
 }
 
 #search-box {
@@ -147,17 +151,21 @@ section h1, h2 {
 #menu-open {
   position: absolute;
   color: #ffffff;
-  font-size: 1.5rem;
   width: 20px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #menu-close {
   position: absolute;
   color: #ffffff;
-  font-size: 1.5rem;
   width: 20px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -165,6 +173,7 @@ section h1, h2 {
 #banner {
   background-image: url(../Images/banner.jpeg);
   background-size: cover;
+  background-position: center 0;
   width: 100%;
   height: 480px;
   display: flex;
@@ -215,8 +224,10 @@ section h1, h2 {
 .course {
   background-color: #e7e7e7;
   border-radius: 30px;
-  width: 100%;
-  height: 100%;
+  max-width: 370px;
+  min-width: 300px;
+  max-height: 360px;
+  min-height: 350px;
   padding: 20px;
   cursor: default;
   overflow: hidden;
@@ -299,6 +310,7 @@ aside {
   background-image: url(../Images/aside.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
   height: 100%;
 }
@@ -364,7 +376,7 @@ aside {
 }
 
 .swiper-slide {
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 
@@ -435,7 +447,7 @@ h4 {
 section h1  {
   text-align: center;
   font-size: 2.2rem;
-  margin: 100px 0 50px 0;
+  margin: 100px 20px 50px 20px;
   text-transform: capitalize;
   text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
 }
@@ -486,17 +498,26 @@ section h1  {
 
 
 /*-- ----- Contributors Page {Third Page Of The Website} ----- -*/
+#contributors {
+  padding: 0 50px;
+}
+
 #contributors-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  margin: 50px;
+  grid-gap: 50px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contributors-profile {
   position: relative;
-  width: 400px;
-  height: 440px;
+  max-width: 400px;
+  min-width: 400px;
+  max-height: 440px;
+  min-height: 425px;
   padding: 10px;
   border-radius: 20px;
   background-color: #bebebe;
@@ -604,7 +625,7 @@ footer {
 #social a {
   text-decoration: none;
   color: #bebebe;
-  margin-right: 10px;
+  margin: 5px;
   transition: .2S ease;
 }
 
@@ -665,168 +686,48 @@ footer {
 
 
 /*-- ----- Responsiveness {Multi Device Compatibility} ----- -*/
-/* Small Devices (Phones) */
-@media (max-width: 767px) {
-  /* Navbar */
-  #navbar {
-    padding: 0 20px;
+@keyframes fade {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
   }
 
-  #logo-container {
-    width: 150px;
-  }
-
-  #search-bar {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  /* Hero Section */
-  #banner {
-    height: 400px;
-  }
-
-  #banner-content {
-    width: 80%;
-    margin-right: 20px;
-  }
-
-  #banner h1 {
-    font-size: 2rem;
-  }
-
-  #banner p {
-    font-size: 0.9rem;
-  }
-
-  /* Courses Section */
-  #courses-container {
-    grid-template-columns: repeat(2, 1fr);
-    width: 90%;
-  }
-
-  /* Features Section */
-  #features {
-    width: 90%;
-    flex-direction: column;
-  }
-
-  #feature-box {
-    width: 100%;
-    margin: 30px;
-  }
-
-  aside {
-    float: none;
-    width: 100%;
-    height: 200px;
-  }
-
-  #why-us {
-    width: 100%;
-    padding: 20px;
-  }
-
-  #why-us h2 {
-    font-size: 2.5rem;
-    text-align: center;
-  }
-
-  #why-us p {
-    font-size: 1.1rem;
-  }
-
-  #feature {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Reviews Section */
-  .swiper {
-    width: 90%;
-  }
-
-  .review::before {
-    font-size: 3rem;
-    top: 20px;
-    right: 20px;
-  }
-
-  .review .user-profile img {
-    width: 35%;
-  }
-
-  .review .user-profile h3 {
-    font-size: 1.2rem;
-  }
-
-  .review .user-profile h4 {
-    font-size: 0.9rem;
-  }
-
-  .review .user-review-text p {
-    font-size: 1rem;
-  }
-
-  /* About Page */
-  #about-content {
-    width: 90%;
-  }
-
-  /* Contributors Page */
-  #contributors-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin: 30px;
-  }
-
-  .contributors-profile {
-    width: 100%;
-    height: auto;
-  }
-
-  .profile {
-    height: auto;
-    padding-top: 80px;
-  }
-
-  .profile-photo {
-    width: 120px;
-    top: 20px;
-    left: 10px;
-  }
-
-  .profile-content h3 {
-    font-size: 1.2rem;
-  }
-
-  .profile-content li {
-    font-size: 0.8rem;
-  }
-
-  /* Footer */
-  footer {
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-  }
-
-  #footer-logo {
-    width: 150px;
-    height: auto;
-  }
-
-  #copyright p {
-    margin-top: 20px;
-  }
-
-  #contact-us form {
-    width: 100%;
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
 }
 
-/*-- ----- Responsive Navbar ----- -*/
-@media (max-width: 1199px) {
+@media (max-width: 1872px) {
+  #courses-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  #contributors-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 50px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 1700px) {
+  #nav-links a { 
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 1600px) {
+  #navbar #nav-links,
+  #navbar #signin-up,
+  #navbar #search-bar,
+  #navbar #search-box,
+  #navbar #search-box input,
+  #navbar #search-icon,
+  #menu-close {
+    animation: fade .4s ease;
+  }
+
   #nav-links,
   #search-bar,
   #signin-up {
@@ -840,7 +741,7 @@ footer {
     position: relative;
     cursor: pointer;
   }
-
+  
   #menu #menu-open,
   #menu #menu-close {
     color: #fff;
@@ -857,298 +758,190 @@ footer {
   #menu.active #menu-open {
     display: none;
   }
-
+  
   #menu.active #menu-close {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #navbar.active {
-    height: auto;
+    height: 480px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
   }
 
   #navbar.active #logo-container {
-    margin-bottom: 20px;
+    margin: 20px;
   }
 
   #navbar.active #nav-links,
-  #navbar.active #search-bar,
   #navbar.active #signin-up {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 20px;
+    align-items: center;
   }
 
-  #navbar.active #nav-links a,
+  #navbar.active #nav-links a {
+    margin: 0 0 20px 0;
+  }
   #navbar.active #signin-up a {
-    margin-right: 0;
-    margin-bottom: 10px;
+    margin: 0 0 20px 0;
   }
 
   #navbar.active #search-bar {
-    margin-right: 0;
+    display: flex;
+    width: 100%;
+    margin: 0 auto 20px auto;
   }
 
   #navbar.active #search-box {
-    width: 100%;
+    width: 90%;
+  }
+
+  #navbar.active #search-icon {
+    width: 10%;
   }
 }
 
-/* Medium Devices (Tablets) */
-@media (min-width: 768px) and (max-width: 1199px) {
-  /* Navbar */
-  #navbar {
-    padding: 0 30px;
-  }
-
-  #logo-container {
-    width: 160px;
-  }
-
-  #search-bar {
-    width: 600px;
-  }
-
-  /* Hero Section */
-  #banner {
-    height: 450px;
-  }
-
-  #banner-content {
-    width: 60%;
-    margin-right: 50px;
-  }
-
-  #banner h1 {
-    font-size: 2.3rem;
-  }
-
-  #banner p {
-    font-size: 1rem;
-  }
-
-  /* Courses Section */
-  #courses-container {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 1412px) {
+  #courses-container { 
     width: 90%;
   }
 
-  /* Features Section */
   #features {
-    width: 90%;
-  }
-
-  #feature-box {
-    margin: 40px;
-  }
-
-  #why-us h2 {
-    font-size: 2.7rem;
-  }
-
-  #why-us p {
-    font-size: 1.2rem;
+    width: 80%;
   }
 
   #feature {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    flex-direction: column;
   }
 
-  /* Reviews Section */
-  .swiper {
+  #about-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1110px) {
+  aside {
+    float: none;
+    width: 100%;
+    height: 200px;
+  }
+
+  #asideimg {
+    background-position: center -30px;
+  }
+
+  #why-us {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #why-us h2 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  #why-us h3 {
+    text-align: center;
+  }
+
+  #why-us p {
+    font-size: 1.1rem;
+  }
+
+  #about-content {
     width: 90%;
+  }
+}
+
+@media (max-width: 893px) {
+  #banner-content p { 
+    display: none;
+  }
+  
+  #banner-content {
+    margin-right: 50px;
+  }
+
+  #banner-content h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 772px) {
+  .swiper {
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #copyright p {
+    margin: 10px 0 20px 0;
+  }
+
+  #abouth  {
+    font-size: 1.9rem;
+  }
+
+  #headline  {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 521px) {
+  .feature-card,
+  #why-us h3,
+  #why-us p{
+    display: none;
+  }
+
+  #asideimg {
+    background-position: center;
+  }
+
+  #features {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #why-us, #why-us h2 {
+    padding: 0;
+    margin: 20px 0 0 0;
+  }
+
+  .review::before {
+    font-size: 3.5rem;
+    right: 50px;
+  }
+
+  .review .user-profile h3, h4 {
+    margin: 0 0 0 10px
+  }
+
+  .review .user-review-text p {
+    margin-top: 5px;
+  }
+
+  .review .user-profile h3 {
+    font-size: 1.3rem;
   }
 
   .review .user-profile img {
     width: 30%;
   }
-
-  .review .user-profile h3 {
-    font-size: 1.3rem;
-  }
-
-  .review .user-profile h4 {
-    font-size: 1rem;
-  }
-
-  .review .user-review-text p {
-    font-size: 1.1rem;
-  }
-
-  /* About Page */
-  #about-content {
-    width: 90%;
-  }
-
-  /* Contributors Page */
-  #contributors-container {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin: 40px;
-  }
-
-  .contributors-profile {
-    width: 100%;
-    height: auto;
-  }
-
-  .profile {
-    height: auto;
-    padding-top: 90px;
-  }
-
-  .profile-photo {
-    width: 130px;
-    top: 25px;
-    left: 15px;
-  }
-
-  .profile-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .profile-content li {
-    font-size: 0.9rem;
-  }
-
-  /* Footer */
-  footer {
-    height: auto;
-    padding: 40px;
-  }
-
-  #contact-us form {
-    width: 300px;
-  }
 }
 
-/* Large Devices (Desktops) */
-@media (min-width: 1200px) {
-  /* Navbar */
-  #navbar {
-    padding: 0 50px;
-  }
-
-  #logo-container {
-    width: 170px;
-  }
-
-  #search-bar {
-    width: 800px;
-  }
-
-  /* Hero Section */
-  #banner {
-    height: 480px;
-  }
-
+@media (max-width: 452px) {
   #banner-content {
-    width: 35%;
-    margin-right: 100px;
-  }
-
-  #banner h1 {
-    font-size: 2.5rem;
-  }
-
-  #banner p {
-    font-size: 1.1rem;
-  }
-
-  /* Courses Section */
-  #courses-container {
-    width: 80%;
-  }
-
-  /* Features Section */
-  #features {
-    width: 80%;
-  }
-
-  #feature-box {
-    margin: 50px;
-  }
-
-  #why-us h2 {
-    font-size: 3rem;
-  }
-
-  #why-us p {
-    font-size: 1.3rem;
-  }
-
-  #feature {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Reviews Section */
-  .swiper {
-    width: 80%;
-  }
-
-  .review .user-profile img {
-    width: 25%;
-  }
-
-  .review .user-profile h3 {
-    font-size: 1.5rem;
-  }
-
-  .review .user-profile h4 {
-    font-size: 1.1rem;
-  }
-
-  .review .user-review-text p {
-    font-size: 1.2rem;
-  }
-
-  /* About Page */
-  #about-content {
-    width: 80%;
-  }
-
-  /* Contributors Page */
-  #contributors-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    margin: 50px;
-  }
-
-  .contributors-profile {
-    width: 400px;
-    height: 440px;
-  }
-
-  .profile {
-    height: calc(100% - 70px);
-    padding-top: 100px;
-  }
-
-  .profile-photo {
-    width: 150px;
-    top: 30px;
-    left: 15px;
-  }
-
-  .profile-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .profile-content li {
-    font-size: 0.9rem;
-  }
-
-  /* Footer */
-  footer {
-    height: 300px;
-    padding: 50px;
-  }
-
-  #contact-us form {
-    width: 350px;
+    margin-right: 30px;
   }
 }

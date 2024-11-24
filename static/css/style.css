@@ -91,6 +91,7 @@ section h1, h2 {
   align-items: center;
   margin-right: 20px;
   overflow: hidden;
+  transition: all .4s ease;
 }
 
 #logo {

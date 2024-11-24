@@ -1,15 +1,39 @@
 //-- ----- Swiper JS ----- -
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 2,
-  grabCursor: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
+document.addEventListener("DOMContentLoaded", () => {
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 2, // Default settings (will apply for screens larger than largest breakpoint)
+    grabCursor: true,
+    breakpoints: {
+      // When window width is >= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      // When window width is >= 768px
+      768: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      // When window width is >= 1120px
+      1120: {
+        slidesPerView: 1,
+        spaceBetween: 30
+      },
+      // When window width is >= 1120px
+      1520: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      }
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
 });
 
 //-- ----- Scroll Reveal JS ----- -
@@ -27,7 +51,7 @@ const courses = [
     id: 0,
     image: "../static/Images/Web-Dev.jpg",
     title: "Web Development",
-    para: "Web development for beginners - learn web development from basics",
+    para: "Web development for beginners - learn web dev from basics",
   },
 
   {
@@ -160,10 +184,16 @@ function displayCourses(coursesToDisplay) {
 }
 
 // Responsive menu toggle
-const menuButton = document.getElementById("menu");
-const navbar = document.getElementById("navbar");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.getElementById("menu");
+  const navbar = document.getElementById("navbar");
 
-menuButton.addEventListener("click", () => {
-  menuButton.classList.toggle("active");
-  navbar.classList.toggle("active");
+  if (menuButton && navbar) {
+    menuButton.addEventListener("click", () => {
+      menuButton.classList.toggle("active");
+      navbar.classList.toggle("active");
+    });
+  } else {
+    console.error("Menu or Navbar element not found");
+  }
 });

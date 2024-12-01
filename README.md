@@ -61,12 +61,12 @@ graph TD
 ```
 
 ## Technology Stack
-- Frontend: HTML, CSS, JavaScript
+- Frontend: HTML, CSS & JavaScript
 - Backend: Python (Flask)
-- Database: MongoDB
+- Database: MongoDB Atlas
 - Analytics: PowerBI
-- Machine Learning: Neural Networks, TensorFlow Lite
-- Security: Bcrypt, Cipher Substitution
+- Machine Learning: Neural Networks & TensorFlow Lite
+- Security: Flask Bcrypt
 
 ## Repository Structure
 ```

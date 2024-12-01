@@ -72,30 +72,24 @@ graph TD
 ```
 E-Academy/
 │
-├── static/                  # Static files (CSS, JS, Images)
+├── static/                 # Static files (CSS, JS, Images)
 │   ├── css/                # Stylesheet files
 │   ├── js/                 # JavaScript files
 │   └── images/             # Image assets
 │
 ├── templates/              # HTML templates
 │   ├── index.html          # Home template
-│   ├── student/           # Student-specific templates
-│   └── teacher/           # Teacher-specific templates
+│   ├── student.html        # Student Home template
+│   ├── teacher.html        # Teacher's Dashboard template
+│   └── ...
 │
-├── app  #contain python flask app
-│
-├── model/
-│   ├── train.py           # Model training script
-│   └── preprocess.py      # Data preprocessing utilities
-│
-├── data/
-│   ├── student_data.csv              # Raw student data
-│   └── enhanced_student_dashboard_data.csv  # Processed data for dashboard
-│
-├── config.py              # Configuration settings
-├── wsgi.py               # WSGI entry point
-├── requirements.txt       # Project dependencies
-└── final_model.ipynb     # Jupyter notebook with model development
+├── app.py                  # Contain python flask app
+├── config.py               # Configuration settings
+├── wsgi.py                 # WSGI entry point
+├── requirements.txt        # Project dependencies
+├── LICENSE                 # Project's License
+├── Readme.md               # Project's Readme 
+└── procfile                # Procfile for Render
 ```
 ## Installation and Setup
 

@@ -13,14 +13,14 @@ E-Academy is a comprehensive e-learning platform that incorporates advanced secu
 - Assignment tracking and submission
 - Secure study material distribution
 
-## Branch Structure
+## E-Academy Repositories
 
-- main: Core application code and web interface
-- host_model: Contains the TensorFlow Lite model for student performance prediction
+- thearmanqureshi: On this GitHub Account the repositories were created to be deployed on Render
+     - thearmanqureshi/E-Academy : Contains the main project
+     - thearmanqureshi/E-Academy-Proxy : Contains the E-Academy Proxy Webpage
+     - thearmanqureshi/E-Academy-Model-Host : Contains the tensorflow-lite model and scaler for the prediction model
 
-     - Separate deployment for optimized model serving
-     - Implements API endpoints for model predictions
-     - Includes model training scripts and data preprocessing
+- anshh-arora/E-Academy: On this GitHub Account our team members worked on the E-Acaedmy Project [Repositorie Link](https://github.com/anshh-arora/E-Academy)
 
 ## Platform Screenshots
 

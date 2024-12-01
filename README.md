@@ -1,4 +1,4 @@
-# E-Academy: Secure E-Learning Management System With Content Encryption and Student Performance Prediction Using Neural Networks
+# E-Academy : Secure E-Learning Management System With Content Encryption and Student Performance Prediction Using Neural Networks
 
 ## Overview
 E-Academy is a comprehensive e-learning platform that incorporates advanced security features, content encryption, and student performance prediction capabilities. The platform provides separate interfaces for students and teachers, enabling efficient learning management and performance tracking.
@@ -20,7 +20,7 @@ E-Academy is a comprehensive e-learning platform that incorporates advanced secu
      - [thearmanqureshi/E-Academy-Proxy](https://github.com/thearmanqureshi/E-Academy-Proxy) : Contains the E-Academy Proxy Webpage
      - [thearmanqureshi/E-Academy-Model-Host](https://github.com/thearmanqureshi/E-Academy-Model-Host) : Contains the tensorflow-lite model and scaler for the prediction model
 
-- [anshh-arora/E-Academy](https://github.com/anshh-arora/E-Academy) : On this GitHub Account our team members worked on the E-Acaedmy Project
+- [anshh-arora/E-Academy](https://github.com/anshh-arora/E-Academy) : On this GitHub Account's Repositorie our team members worked on the E-Acaedmy Project
 
 ## Platform Screenshots
 

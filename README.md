@@ -106,7 +106,7 @@ E-Academy/
 
 ### Clone the Repository
 ```bash
-https://github.com/anshh-arora/E-Academy.git
+https://github.com/thearmanqureshi/E-Academy.git
 cd E-Academy
 ```
 

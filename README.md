@@ -24,20 +24,24 @@ E-Academy is a comprehensive e-learning platform that incorporates advanced secu
 
 ## Platform Screenshots
 
+### E-Academy Proxy
+![E_Academy Proxy](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Service-Status.png?raw=true)
+*E-Academy Proxy Webpage that enhances users expierence and diplays a message until the Render services are stareted*
+
 ### Homepage
-![Homepage](https://github.com/anshh-arora/Secure-Learning-Management-System-with-Content-Encryption-and-Student-Performance-Prediction/blob/main/Home_page)
+![Homepage](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Home-Page.png?raw=true)
 *E-Academy homepage featuring sign-in and registration options*
 
 ### Student Home Page
-![Student Home Page](https://github.com/anshh-arora/E-Academy/blob/main/Student%20Home%20Page)
+![Student Home Page](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Student-Home-Page.png?raw=true)
 *Student interface showing courses, assignments, and study materials*
 
-### Teacher Dashboard
-![Teacher Dashboard](https://github.com/anshh-arora/Secure-Learning-Management-System-with-Content-Encryption-and-Student-Performance-Prediction/blob/main/Teacher's%20Dashboard.jpg)
+### Teacher's Dashboard
+![Teacher's Dashboard](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Teacher-Dashboard.png?raw=true)
 *Comprehensive teacher dashboard with student performance metrics*
 
 ### Performance Prediction Model
-![Prediction Model](https://github.com/anshh-arora/E-Academy/blob/main/Prediction%20Model)
+![Prediction Model](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Model.png?raw=true)
 *Neural Network-based performance prediction visualization*
 
 ## Project Architecture

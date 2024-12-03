@@ -26,7 +26,7 @@ E-Academy is a comprehensive e-learning platform that incorporates advanced secu
 
 ### E-Academy Proxy
 ![E_Academy Proxy](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Service-Status.png?raw=true)
-*E-Academy Proxy Webpage that enhances users expierence and diplays a message until the Render services are started*
+*E-Academy Proxy Webpage that enhances users experience and displays a message until the Render services are started*
 
 ### Homepage
 ![Homepage](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Home-Page.png?raw=true)
@@ -125,7 +125,7 @@ python wsgi.py
 The application will be available at `http://localhost:5000`
 
 ## Team Members and Contributions
-- **Arman**: Frontend Development
+- **Arman**: Frontend Development & Project Deployment
 - **Piyush**: Responsive Design Implementation
 - **Ansh**: Neural Network Model Development
 - **Karan**: PowerBI Dashboard and Data Visualization

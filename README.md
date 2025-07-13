@@ -26,7 +26,7 @@ E-Academy is a comprehensive e-learning platform that incorporates advanced secu
 
 ### E-Academy Proxy
 ![E_Academy Proxy](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Service-Status.png?raw=true)
-*E-Academy Proxy Webpage that enhances users experience and displays a message until the Render services are started*
+*E-Academy Proxy Webpage that enhances users experience and displays a message until the Render services are started (No longer needed as Render has implemented a browser page load)*
 
 ### Homepage
 ![Homepage](https://github.com/thearmanqureshi/E-Academy/blob/main/static/Images/Home-Page.png?raw=true)

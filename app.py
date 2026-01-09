@@ -49,7 +49,16 @@ def download_file(url, suffix):
     Returns the file path.
     """
     try:
-        response = requests.get(url, stream=True)
+        for _ in range(10):
+            try:
+                r = requests.head(url, timeout=5)
+                if r.status_code == 200:
+                    break
+            except Exception:
+                pass
+            time.sleep(3)
+
+        response = requests.get(url, stream=True, timeout=60)
         response.raise_for_status()
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temp_file:
@@ -521,3 +530,4 @@ def forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+

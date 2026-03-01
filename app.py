@@ -49,8 +49,6 @@ def download_file(url, suffix):
     Returns the file path.
     """
     try:
-        for _ in range(10):
-            try:
         response = requests.get(url, stream=True, timeout=60)
         response.raise_for_status()
 
@@ -523,6 +521,7 @@ def forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
 
 
 

@@ -13,7 +13,6 @@ import pickle
 from datetime import datetime
 import tempfile
 import logging
-import time
 
 # Logging setup
 logging.basicConfig(level=logging.INFO)
@@ -52,13 +51,6 @@ def download_file(url, suffix):
     try:
         for _ in range(10):
             try:
-                r = requests.head(url, timeout=5)
-                if r.status_code == 200:
-                    break
-            except Exception:
-                pass
-            time.sleep(3)
-
         response = requests.get(url, stream=True, timeout=60)
         response.raise_for_status()
 
@@ -531,5 +523,6 @@ def forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
 
 
